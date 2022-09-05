@@ -57,4 +57,8 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+
+  # The following line fixes an issue caused by 'sassc-rails' gem. 
+  # Tests failed because non comma separated rgb colour values could not be compiled.
+  config.assets.css_compressor = nil
 end
