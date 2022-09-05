@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# May this route as controller/method has been superceded
 RSpec.describe "Api::Users", type: :request do
     describe "Get show" do
         let(:headers) do

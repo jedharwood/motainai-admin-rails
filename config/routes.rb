@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root "home#index"
 
   namespace :api do
-    resources :users, only: :show
+    resources :users, only: :show # May this route as controller/method has been superceded
     get "/user_by_email" => "user_by_email#show", as: :user_by_email 
   end
 end

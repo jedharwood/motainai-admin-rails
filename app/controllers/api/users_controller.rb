@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# May be able to deprecate this controller/method as it has been superceded
+# May this controller/method as it has been superceded
 module Api
     class UsersController < ApplicationController
         def show
