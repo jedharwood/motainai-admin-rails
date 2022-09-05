@@ -6,14 +6,13 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= favicon_link_tag asset_path("svg/recycle_favicon.svg") %>
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <%= yield %>
+      <%= render 'layouts/header' %>
+      <%= yield %>
   </body>
 </html>
