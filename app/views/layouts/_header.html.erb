@@ -1,6 +1,7 @@
-<header class="nav-header bg-slate-800">
+<header data-controller="header" class="nav-header bg-slate-800"> <!-- Prob don't need the nav-header class anymore -->
     <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
         <div class="relative h-16 flex justify-between nav-container">
+            <!-- Maybe I can set my hover state colours here? Or set the colour of the text and hover at the link-logo class? -->
             <div class="relative z-10 px-2 flex lg:px-0">
                  <div class="flex-shrink-0 flex items-center">
                     <%= link_to root_path, class: "logo-link flex items-center" do %>
@@ -11,6 +12,8 @@
                     <% end %>
                 </div>
             </div>
+
+            <!-- Use burger menu if no user logged in? -->
             <div class="relative z-10 flex items-center lg:hidden">
                 <button type="button" class="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-700 hover: text-white">
                 <span class="sr-only">Open menu</span>
@@ -18,6 +21,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </div>
+
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button type="button" class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-300">
                     <span class="sr-only">View notifications</span>
@@ -25,20 +29,36 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                     </svg>
                 </button>
-                <div class="ml-3 relative">
+
+               <div class="ml-3 relative">
                     <div>
                         <button data-header-target="openUserMenu" type="button" class="bg-teal-500 hover:bg-teal-300 rounded-full flex items-center justify-center text-lg text-white h-8 w-8" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                             <span class="sr-only">Open user menu</span>
                             JH
                         </button>
                     </div>
-                    <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+
+                    <div 
+                        class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" 
+                        id="menu-dropdown-items"
+                        role="menu" 
+                        aria-orientation="vertical" 
+                        aria-labelledby="user-menu-button" 
+                        tabindex="-1"
+                        data-transition-enter="transition ease-out duration-100"
+                        data-transition-enter-start="transform opacity-0 scale-95"
+                        data-transition-enter-end="transform opacity-100 scale-100"
+                        data-transition-leave="transition ease-in duration-75"
+                        data-transition-leave-start="transform opacity-100 scale-100"
+                        data-transition-leave-end="transform opacity-0 scale-95"
+                    >
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Item 1</a>
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Item 2</a>
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Item 3</a>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
-</header>
+</header> 
