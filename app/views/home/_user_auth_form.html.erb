@@ -1,0 +1,29 @@
+<div data-controller="user-by-email-auth">
+    <div>
+        <div class="flex">
+            <div class="flex-none text-slate-800 cursor-pointer" data-modal-target="closeButton">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentcolor" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m-15 0l15 15" />
+                </svg>
+            </div>
+            <div class="flex-grow">
+                <h3 class="pr-7 text-md leading-6 font-medium text-gray-900 text-center mb-4" id="modal-title">Log in or register</h3>
+            </div>
+        </div>
+        <div class="relative">
+            <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                <div class="w-full border-t border-slate-300"></div>
+            </div>
+        </div>
+        <div class="pt-4">
+            <h4 class="text-2xl leading-6 text-gray-900 mt-2 font-medium">Motainai Admin</h4>
+            <div class="mt-6 border border-slate-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800">
+                <label for="email" class="block text-xs font-medium text-gray-900">Email</label>
+                <input data-user-by-email-auth-target="emailInput" type="text" name="email" id="email" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="Email address">
+            </div>
+        </div>
+    </div>
+    <div class="mt-5 sm:mt-6">
+        <button data-user-by-email-auth-target="submitButton" type="button" class="w-full inline-flex items-center justify-center px6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-teal-500 hover:bg-teal-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-800">Continue</button>
+    </div>
+</div>

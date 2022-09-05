@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-# May be able to deprecate this controller/method as it has been superceded
 module Api
-    class UsersController < ApplicationController
+    class UserByEmailController < ApplicationController
         def show
-            user = User.find(params[:id])
+            user = User.find_by!(email: params[:email])
 
             respond_to do |format|
                 format.json do
