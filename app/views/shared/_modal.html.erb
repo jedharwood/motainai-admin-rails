@@ -30,7 +30,19 @@
                 data-transition-leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
                 <div>
-                    <h3 class="text-md leading-6 font-medium text-gray-900 text-center mb-4" id="modal-title">Log in or register</h3>
+                    <div class="flex">
+                        <div class="flex-none text-slate-800 cursor-pointer" data-modal-target="closeButton">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentcolor" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m-15 0l15 15" />
+                            </svg>
+                        </div>
+                        
+                        <div class="flex-grow">
+                            <h3 class="pr-7 text-md leading-6 font-medium text-gray-900 text-center mb-4" id="modal-title">Log in or register</h3>
+                        </div>
+                        
+                    </div>
+                    
                     <div class="relative">
                         <div class="absolute inset-0 flex items-center" aria-hidden="true">
                             <div class="w-full border-t border-slate-300"></div>
