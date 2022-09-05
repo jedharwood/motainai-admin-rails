@@ -7,5 +7,6 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :users, only: :show
+    get "/user_by_email" => "user_by_email#show", as: :user_by_email 
   end
 end
