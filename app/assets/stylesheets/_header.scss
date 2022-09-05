@@ -1,0 +1,16 @@
+$teal-main: #14b8a6;
+$teal-hover: #5eead4;
+
+.nav-container {
+  min-height: 80px;
+}
+
+.logo-link {
+  color: $teal-main;
+  svg {
+    display: block;
+  }
+  &:hover {
+    color: $teal-hover;
+  }
+}
