@@ -24,9 +24,14 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ] # Windows does n
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+group :test do
+  gem "shoulda-matchers", "~> 5.0" # Assert model validations
+end
+
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ] # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "factory_bot_rails" # Fixture to instantiate classes for testing
+  gem "faker", git: 'https://github.com/faker-ruby/faker.git', branch: "master" # Dummy values for testing/development
   gem 'pry-byebug' # Debugging breakpoints
   gem "rspec-rails", "~> 5.1", ">= 5.1.2" # Testing framework
 end
