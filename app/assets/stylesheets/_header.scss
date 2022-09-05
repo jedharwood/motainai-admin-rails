@@ -1,16 +1,34 @@
-$teal-main: #14b8a6;
-$teal-hover: #5eead4;
+$teal-500: #14b8a6;
+$teal-300: #5eead4;
+$rose-500: #f43f5d;
 
 .nav-container {
   min-height: 80px;
 }
 
 .logo-link {
-  color: $teal-main;
+  color: $teal-500;
   svg {
     display: block;
   }
   &:hover {
-    color: $teal-hover;
+    color: $teal-300;
+  }
+}
+
+.invalid-inset-input-text-field {
+  border-color: $rose-500 !important;
+
+  label {
+    color: $rose-500 !important;
+  }
+
+  input[type="email"],
+  input[type="text"] {
+    &:focus {
+      border-color: $rose-500 !important;
+    }
+
+    color: $rose-500;
   }
 }
