@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
+import axios from "axios";
 
 export default class extends Controller {
   static targets = ["emailInput", "submitButton"];
@@ -8,11 +9,23 @@ export default class extends Controller {
       e.preventDefault();
 
       if (this.emailInputTarget.value.length === 0) {
-        console.log('// do nothing')
         // do nothing
       } else {
-        console.log('// do thing')
-        // do thing
+        axios
+          .get("/api/user_by_email", {
+            params: {
+              email: this.emailInputTarget.value,
+            },
+            headers: {
+              ACCEPT: "application/json",
+            },
+          })
+          .then((res) => {
+            Turbo.visit("/users/sign_in");
+          })
+          .catch((res) => {
+            Turbo.visit("/users/sign_up");
+          });
       }
     });
   }
