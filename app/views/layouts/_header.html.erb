@@ -1,21 +1,20 @@
-<header data-controller="header" class="nav-header bg-slate-800"> <!-- Prob don't need the nav-header class anymore -->
+<header data-controller="header" class="bg-slate-800">
     <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
         <div class="relative h-16 flex justify-between nav-container">
-            <!-- Maybe I can set my hover state colours here? Or set the colour of the text and hover at the link-logo class? -->
             <div class="relative z-10 px-2 flex lg:px-0">
                  <div class="flex-shrink-0 flex items-center">
-                    <%= link_to root_path, class: "logo-link flex items-center" do %>
+                    <%= link_to root_path, class: "logo-link flex items-center focus:underline" do %>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="32" height="32">
                             <path fill="currentcolor" d="M180.2 243.1C185 263.9 162.2 280.2 144.1 268.8L119.8 253.6l-50.9 81.43c-13.33 21.32 2.004 48.98 27.15 48.98h32.02c17.64 0 31.98 14.32 31.98 31.96c0 17.64-14.34 32.05-31.98 32.05H96.15c-75.36 0-121.3-82.84-81.47-146.8L65.51 219.8L41.15 204.5C23.04 193.1 27.66 165.5 48.48 160.7l91.43-21.15C148.5 137.7 157.2 142.9 159.2 151.6L180.2 243.1zM283.1 78.96l41.25 66.14l-24.25 15.08c-18.16 11.31-13.57 38.94 7.278 43.77l91.4 21.15c8.622 1.995 17.23-3.387 19.21-12.01l21.04-91.43c4.789-20.81-17.95-37.05-36.07-25.76l-24.36 15.2L337.4 45.14c-37.58-60.14-125.2-60.18-162.8-.0617L167.2 56.9C157.9 71.75 162.5 91.58 177.3 100.9c14.92 9.359 34.77 4.886 44.11-10.04l7.442-11.89C241.6 58.58 270.9 59.33 283.1 78.96zM497.3 301.3l-16.99-27.26c-9.336-14.98-29.06-19.56-44.04-10.21c-14.94 9.318-19.52 29.15-10.18 44.08l16.99 27.15c13.35 21.32-1.984 49-27.14 49h-95.99l.0234-28.74c0-21.38-25.85-32.09-40.97-16.97l-66.41 66.43c-6.222 6.223-6.222 16.41 .0044 22.63l66.42 66.34c15.12 15.1 40.95 4.386 40.95-16.98l-.0234-28.68h95.86C491.2 448.1 537.2 365.2 497.3 301.3z"/>
                         </svg>
-                        <h1 class="text-xl font-bold text-teal-500 hover:text-teal-300 pl-2">Mottainai Admin</h1> 
+                        <h1 class="text-xl font-bold pl-2">Mottainai Admin</h1> 
                     <% end %>
                 </div>
             </div>
 
             <!-- Use burger menu if no user logged in? -->
             <div class="relative z-10 flex items-center lg:hidden">
-                <button type="button" class="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-700 hover: text-white">
+                <button type="button" class="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-slate-700 hover: text-white focus:outline-none focus:ring-2 focus:ring-teal-300">
                 <span class="sr-only">Open menu</span>
                         <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -23,7 +22,7 @@
             </div>
 
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button type="button" class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-300">
+                <button type="button" class="p-1 rounded-full text-gray-400 hover:text-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-300">
                     <span class="sr-only">View notifications</span>
                     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
@@ -32,7 +31,7 @@
 
                 <div class="ml-3 relative">
                     <div>
-                        <button data-header-target="openUserMenu" type="button" class="bg-teal-500 hover:bg-teal-300 rounded-full flex items-center justify-center text-lg text-white h-8 w-8" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                        <button data-header-target="openUserMenu" type="button" class="bg-teal-500 hover:bg-teal-300 rounded-full flex items-center justify-center text-lg text-white h-8 w-8 focus:outline-none focus:ring-2 focus:ring-teal-300" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                             <span class="sr-only">Open user menu</span>
                             JH
                         </button>

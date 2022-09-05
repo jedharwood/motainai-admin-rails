@@ -7,7 +7,6 @@
     aria-modal="true"
 >
     <div class="hidden" id ="modal-trigger" data-action="click->modal#showModal"></div>
-
     <div 
         id="modal-backdrop" 
         class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
@@ -18,7 +17,6 @@
         data-transition-leave-start="opacity-100"
         data-transition-leave-end="opacity-0"
     ></div>
-
     <div class="fixed z-10 inset-0 overflow-y-auto">
         <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
             <div 
@@ -33,16 +31,13 @@
             >
                 <div>
                     <h3 class="text-md leading-6 font-medium text-gray-900 text-center mb-4" id="modal-title">Log in or register</h3>
-                    
                     <div class="relative">
                         <div class="absolute inset-0 flex items-center" aria-hidden="true">
                             <div class="w-full border-t border-slate-300"></div>
                         </div>
                     </div>
-                    
                     <div class="pt-4">
                         <h4 class="text-2xl leading-6 text-gray-900 mt-2 font-medium">Motainai Admin</h4>
-
                         <div class="mt-6 border border-slate-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800">
                             <label for="email" class="block text-xs font-medium text-gray-900">Email</label>
                             <input type="text" name="email" id="email" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="Email address">
