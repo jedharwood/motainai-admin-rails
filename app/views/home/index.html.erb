@@ -1,1 +1,15 @@
-<p>Hello world</p>
+<div class="text-md font-medium text-gray-900 text-center">
+    <div class="pt-4">
+        <h4 class="text-2xl leading-6 text-gray-900 mt-2 font-medium">Welcome to Motainai Admin</h4>
+        <p class="mt-2">
+            <% if is_approved_user %>
+                You are signed in
+            <% elsif user_signed_in? %>
+                Your account is pending approval. Please contact your administrator.
+            <% else %>
+                Please register or sign in.
+            <% end %>
+        </p>
+    </div>
+</div>
+
