@@ -37,7 +37,6 @@ Prefecture.upsert_all(
     { code: 1020, name: "Tokushima" },
     { code: 1030, name: "Ehime" },
     { code: 1040, name: "Kochi" },
-    { code: 100, name: "Hokkaido" },
     { code: 1110, name: "Fukuoka" },
     { code: 1120, name: "Saga" },
     { code: 1130, name: "Nagasaki" },

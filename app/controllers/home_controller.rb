@@ -2,6 +2,6 @@
 
 class HomeController < ApplicationController
     def index
-        @prefectures = Prefecture.all
+        @prefectures = Prefecture.all.order(:code)
     end
 end
