@@ -9,4 +9,6 @@ Rails.application.routes.draw do
     resources :users, only: :show # May this route as controller/method has been superceded
     get "/user_by_email" => "user_by_email#show", as: :user_by_email 
   end
+
+  resources :prefecture, only: :show
 end
