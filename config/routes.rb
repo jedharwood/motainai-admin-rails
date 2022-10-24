@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   end
 
   resources :prefecture, only: :show
+  resources :city, only: [:index, :show]
 end
