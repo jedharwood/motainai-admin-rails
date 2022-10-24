@@ -1,1 +1,5 @@
-<p>Show/edit information for <%= @city.name %></p>
+<%= render 'layouts/authorization_filter', 
+    page_title: "#{@city.name}", 
+    description: "Display/edit information for #{@city.name}", 
+    page_content: 'city_display' 
+%>
