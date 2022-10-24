@@ -1,42 +1,15 @@
-<div class="text-md font-medium text-gray-900 text-center py-4">
-    <% if @cities.count == 0 %>
-        <h4 class="text-2xl leading-6 text-gray-900 mt-2">There are no cities listed yet for <%= @prefecture.name %></h4>
-        <p class="mt-2 font-normal">There'll be a button here to add one once the controller is set up</p>
-    <% else %>
-        <h4 class="text-2xl leading-6 text-gray-900 mt-2">Cities for <%= @prefecture.name %></h4>
-        <div class="mt-2">
-            <div class="flex justify-center text-left">
-                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                        <div class="overflow-hidden">
-                            <table>
-                                <thead class="bg-white border-b">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-4">
-                                            City
-                                        </th>
-                                        <th scope="col" class="px-6 py-4">
-                                            Rating
-                                        </th>
-                                        <th scope="col" class="px-6 py-4">
-                                            Rules
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% @cities.each do |city| %>
-                                        <tr class="border-b hover:bg-gray-100 whitespace-nowrap">
-                                            <td class="px-6 py-4 px-2 text-teal-500 hover:text-teal-300 focus:underline"><%= city.name %></td>
-                                            <td class="px-6 py-4"><%= city.rating %></td>
-                                            <td class="px-6 py-4 font-normal">placeholder</td>
-                                        </tr>
-                                    <% end %>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div> 
-        </div>
-    <% end %>
-</div>
+<% if @cities.count == 0 %>
+    <%= render 'layouts/authorization_filter', 
+        page_title: "There are no cities listed yet for #{@prefecture.name}", 
+        description: "There'll be a button here to add one once the controller is set up",
+        page_content: nil
+    %>
+<% else %>
+     <%= render 'layouts/authorization_filter', 
+        page_title: "Cities for #{@prefecture.name}",
+        description: '', 
+        page_content: 'prefecture_display'
+    %>
+<% end %>
+
+
