@@ -10,14 +10,17 @@ class CityController < ApplicationController
     end
 
     def new
-        @new_city = City.new
         @prefectures = Prefecture.all.order(:code)
+        @new_city = City.new
+        if params[:format].present?
+            @new_city.prefecture_id = params[:format]
+        end
     end
 
     def create
+        @prefectures = Prefecture.all.order(:code)
         @new_city = City.new(params.require(:city).permit(:name, :prefecture_id))
         @new_city.rating = 0
-        @prefectures = Prefecture.all.order(:code)
 
         respond_to do |format|
             format.html do
