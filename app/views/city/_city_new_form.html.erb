@@ -3,12 +3,12 @@
         <div class="rounded-md shadow-sm -space-y-px">
             <div>
                 <%= f.label :prefecture_id, "Prefecture", class: "sr-only" %>
-                <%= f.collection_select :prefecture_id, @prefectures, :id, :name, include_blank: true, autofocus: true, :prompt => 'Prefecture', :class => 'w-full' %>
+                <%= f.collection_select :prefecture_id, @prefectures, :id, :name, {prompt: 'Prefecture'}, { class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 rounded-md focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800 focus:z-10 sm:text-sm mb-4" } %>
             </div>
             
             <div>
                 <%= f.label :name, "City name", class: "sr-only" %>
-                <%= f.text_field :name, autofocus: true, placeholder: "City name", class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800 focus:z-10 sm:text-sm mb-4" %>
+                <%= f.text_field :name, autofocus: true, placeholder: "City name", class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 rounded-md focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800 focus:z-10 sm:text-sm mb-4" %>
             </div>
         </div>
         <div>
