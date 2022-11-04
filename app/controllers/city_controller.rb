@@ -34,4 +34,29 @@ class CityController < ApplicationController
             end
         end
     end
+
+    def edit
+        @prefectures = Prefecture.all.order(:code)
+        @city = City.find(params[:id])
+        respond_to do |format|
+            format.html { render :edit, locals: { city: @city } }
+        end
+    end
+
+    def update
+        @prefectures = Prefecture.all.order(:code)
+        @city = City.find(params[:id])
+
+        respond_to do |format|
+            format.html do
+                if @city.update(params.require(:city).permit(:name, :prefecture_id, :rating))
+                    flash[:success] = 'City updated successfully'
+                    redirect_to city_path(@city)
+                else
+                    flash.now[:error] = 'Error: City could not be updated'
+                    render :edit, locals: { city: @city }, status: :unprocessable_entity
+                end
+            end
+        end
+    end
 end

@@ -1,0 +1,13 @@
+$rose-500: #f43f5d;
+$rose-100: #ffe4e6;
+
+.field_with_errors {
+    text-align: left;
+    input {
+        border-color: $rose-500;
+        background-color: $rose-100;
+    }
+    input::placeholder {
+        color: $rose-500;
+    }
+  }
