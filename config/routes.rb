@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   end
 
   resources :prefecture, only: :show
+
   resources :city, only: [:index, :new, :show]
   post "city/new", to: "city#create" 
+  get 'city/:id/edit', to: 'city#edit', as: 'edit_city'
+  patch 'city/:id/edit', to: 'city#update'
+  put 'city/:id/edit', to: 'city#update'
 end
