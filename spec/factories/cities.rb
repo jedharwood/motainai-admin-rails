@@ -2,6 +2,6 @@ FactoryBot.define do
   factory :city do
     prefecture { create(:prefecture) }
     name { Faker::Address.city }
-    rating { Faker::Number.decimal(l_digits: 1, r_digits: 1) }
+    rating { Faker::Number.within(range: 0.0..5.0) }
   end
 end
