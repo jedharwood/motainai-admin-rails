@@ -26,7 +26,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ] # Windows does n
 
 group :test do
   gem "shoulda-matchers", "~> 5.0" # Assert model validations
-  gem 'simplecov', require: false
+  gem "simplecov", require: false
 end
 
 group :development, :test do
@@ -36,6 +36,7 @@ group :development, :test do
   gem "faker-jp_prefecture" #Dummy values relating to Japanese prefectures
   gem 'pry-byebug' # Debugging breakpoints
   gem "rspec-rails", "~> 5.1", ">= 5.1.2" # Testing framework
+  gem "rubocop" # Ruby linter
 end
 
 group :development do
