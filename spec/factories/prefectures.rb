@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :prefecture do
     name { Faker::JpPrefecture::Prefecture.name }
