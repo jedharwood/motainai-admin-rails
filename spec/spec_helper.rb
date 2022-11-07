@@ -8,7 +8,6 @@ SimpleCov.start do
   add_group 'Models', 'app/models'
   add_group 'Helpers', 'app/helpers'
   add_group 'Mailers', 'app/mailers'
-  add_group 'Javascript', 'app/javascript'
 end
 SimpleCov.coverage_dir 'public/coverage'
 
