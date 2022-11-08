@@ -3,71 +3,72 @@
 require 'rails_helper'
 
 RSpec.describe UserProfileHelper, type: :helper do
-  describe 'user_profile_initials' do
-    context 'when profile has first_name and last_name' do
-      profile = Profile.create(first_name: 'Cliff', last_name: 'Burton')
+  signed_in = true
+  not_signed_in = false
+  profile_with_full_name = Profile.create(first_name: 'Cliff', last_name: 'Burton', approved: true)
+  profile_with_first_name = Profile.create(first_name: 'Cliff', approved: false)
+  profile_with_last_name = Profile.create(last_name: 'Burton')
 
-      it 'returns initials if user_signed_in' do
-        signed_in = true
-        result = user_profile_initials(signed_in, profile)
-        expect(result).to eq 'CB'
-      end
-
-      it 'returns MA if !user_signed_in' do
-        signed_in = false
-        result = user_profile_initials(signed_in, profile)
-        expect(result).to eq 'MA'
-      end
+  describe 'approved_user?' do
+    it 'returns false if !user_signed_in' do
+      result = approved_user?(not_signed_in, profile_with_full_name)
+      expect(result).to be false
     end
 
-    context 'when user_signed_in' do
-      signed_in = true
+    it 'returns false if user_signed_in and profile not approved' do
+      result = approved_user?(signed_in, profile_with_first_name)
+      expect(result).to be false
+    end
 
-      it 'returns MA if profile has only first_name' do
-        profile = Profile.create(first_name: 'Cliff')
-        result = user_profile_initials(signed_in, profile)
-        expect(result).to eq 'MA'
-      end
+    it 'returns true if user_signed_in and profile approved' do
+      result = approved_user?(signed_in, profile_with_full_name)
+      expect(result).to be true
+    end
+  end
 
-      it 'returns MA if profile has only last_name' do
-        profile = Profile.create(last_name: 'Burton')
-        result = user_profile_initials(signed_in, profile)
-        expect(result).to eq 'MA'
-      end
+  describe 'user_profile_initials' do
+    it 'returns MA if !user_signed_in' do
+      result = user_profile_initials(not_signed_in, profile_with_full_name)
+      expect(result).to eq 'MA'
+    end
+
+    it 'returns MA if user_signed_in and profile has only first_name' do
+      profile = Profile.create(first_name: 'Cliff')
+      result = user_profile_initials(signed_in, profile)
+      expect(result).to eq 'MA'
+    end
+
+    it 'returns MA if user_signed_in and profile has only last_name' do
+      profile = Profile.create(last_name: 'Burton')
+      result = user_profile_initials(signed_in, profile)
+      expect(result).to eq 'MA'
+    end
+
+    it 'returns initials if user_signed_in and profile has first_name and last_name' do
+      result = user_profile_initials(signed_in, profile_with_full_name)
+      expect(result).to eq 'CB'
     end
   end
 
   describe 'user_profile_full_name' do
-    context 'when profile has first_name and last_name' do
-      profile = Profile.create(first_name: 'Cliff', last_name: 'Burton')
-
-      it 'returns full name if user_signed_in' do
-        signed_in = true
-        result = user_profile_full_name(signed_in, profile)
-        expect(result).to eq 'Cliff Burton'
-      end
-
-      it 'returns empty string if !user_signed_in' do
-        signed_in = false
-        result = user_profile_full_name(signed_in, profile)
-        expect(result).to eq ''
-      end
+    it 'returns empty string if !user_signed_in' do
+      result = user_profile_full_name(not_signed_in, profile_with_full_name)
+      expect(result).to eq ''
     end
 
-    context 'when user_signed_in' do
-      signed_in = true
+    it 'returns empty string if user_signed_in and profile has only first_name' do
+      result = user_profile_full_name(signed_in, profile_with_first_name)
+      expect(result).to eq ''
+    end
 
-      it 'returns empty string if profile has only first_name' do
-        profile = Profile.create(first_name: 'Cliff')
-        result = user_profile_full_name(signed_in, profile)
-        expect(result).to eq ''
-      end
+    it 'returns empty string if user_signed_in and profile has only last_name' do
+      result = user_profile_full_name(signed_in, profile_with_last_name)
+      expect(result).to eq ''
+    end
 
-      it 'returns MA if profile has only last_name' do
-        profile = Profile.create(last_name: 'Burton')
-        result = user_profile_full_name(signed_in, profile)
-        expect(result).to eq ''
-      end
+    it 'returns full name if user_signed_in and profile has first_name and last_name' do
+      result = user_profile_full_name(signed_in, profile_with_full_name)
+      expect(result).to eq 'Cliff Burton'
     end
   end
 end
