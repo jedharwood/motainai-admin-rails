@@ -60,7 +60,7 @@
                         </div>
                         
                         <div class="py-1 text-sm text-gray-700" role="none">
-                            <% if approved_user? %>
+                            <% if approved_user?(user_signed_in?, current_user&.profile) %>
                                 <%= link_to "Cities", city_index_path, class: "block px-4 py-2 hover:bg-gray-100", id: "user-menu-item-2" %>
                                 <%= link_to "Add a city", new_city_path, class: "block px-4 py-2 hover:bg-gray-100", id: "user-menu-item-3" %>
                             <% else %>
@@ -114,7 +114,7 @@
                         <a href="#" data-header-target="userAuthLink" class="block rounded-md py-2 px-3 focus:bg-gray-700 focus:text-white" role="menuitem" tabindex="-1" id="user-menu-item-0">Sign up</a>
                         <a href="#" data-header-target="userAuthLink" class="block rounded-md py-2 px-3 focus:bg-gray-700 focus:text-white" role="menuitem" tabindex="-1" id="user-menu-item-1">Log in</a>
                     <% end %>
-                    <% if approved_user? %>
+                    <% if approved_user?(user_signed_in?, current_user&.profile) %>
                         <%= link_to "Cities", city_index_path, class: "block rounded-md py-2 px-3 hover:bg-gray-700 hover:text-white", id: "user-menu-item-2" %>
                         <%= link_to "Add a city", new_city_path, class: "block rounded-md py-2 px-3 hover:bg-gray-700 hover:text-white", id: "user-menu-item-3" %>
                     <% end %>

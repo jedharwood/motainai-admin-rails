@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module UserProfileHelper
-  def approved_user?
-    user_signed_in? && current_user&.profile&.approved
+  def approved_user?(signed_in, profile)
+    signed_in && profile&.approved
   end
 
   def user_profile_initials(signed_in, profile)
