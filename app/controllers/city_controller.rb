@@ -11,25 +11,25 @@ class CityController < ApplicationController
 
   def new
     @prefectures = Prefecture.all.order(:code)
-    @new_city = City.new
+    @city = City.new
     return unless params[:format].present?
 
-    @new_city.prefecture_id = params[:format]
+    @city.prefecture_id = params[:format]
   end
 
   def create
     @prefectures = Prefecture.all.order(:code)
-    @new_city = City.new(params.require(:city).permit(:name, :prefecture_id))
-    @new_city.rating = 0
+    @city = City.new(params.require(:city).permit(:name, :prefecture_id))
+    @city.rating = 0
 
     respond_to do |format|
       format.html do
-        if @new_city.save
+        if @city.save
           flash[:success] = 'City saved successfully'
           redirect_to city_index_path
         else
           flash.now[:error] = 'Error: City could not be saved'
-          render :new, locals: { city: @new_city }, status: :unprocessable_entity
+          render :new, locals: { city: @city }, status: :unprocessable_entity
         end
       end
     end
@@ -56,6 +56,18 @@ class CityController < ApplicationController
           flash.now[:error] = 'Error: City could not be updated'
           render :edit, locals: { city: @city }, status: :unprocessable_entity
         end
+      end
+    end
+  end
+
+  def destroy
+    @city = City.find(params[:id])
+    @city.destroy
+
+    respond_to do |format|
+      format.html do
+        flash[:success] = 'City removed successfully'
+        redirect_to city_index_path
       end
     end
   end
