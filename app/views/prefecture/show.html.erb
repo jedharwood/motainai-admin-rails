@@ -1,13 +1,13 @@
 <% if @cities.count == 0 %>
     <%= render 'layouts/authorization_filter', 
         page_title: "There are no cities listed yet for #{@prefecture.name}", 
-        description: "There'll be a button here to add one once the controller is set up",
-        page_content: nil
+        description: "",
+        page_content: 'prefecture_display'
     %>
 <% else %>
      <%= render 'layouts/authorization_filter', 
         page_title: "Cities for #{@prefecture.name}",
-        description: '', 
+        description: "", 
         page_content: 'prefecture_display'
     %>
 <% end %>
