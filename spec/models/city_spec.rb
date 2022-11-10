@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe City, type: :model do
   it { should belong_to :prefecture }
+  it { should have_many(:rule_days).dependent(:destroy) }
 
   describe 'validations' do
     subject { FactoryBot.build(:city) }
