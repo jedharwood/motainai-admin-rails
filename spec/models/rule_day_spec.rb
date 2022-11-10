@@ -7,6 +7,7 @@ RSpec.describe RuleDay, type: :model do
 
   describe 'validations' do
     subject { FactoryBot.build(:rule_day) }
+    it { should validate_presence_of(:code) }
     it { should validate_presence_of(:name) }
   end
 end
