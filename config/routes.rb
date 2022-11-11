@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   delete 'city/:id', to: 'city#destroy'
 
   resources :waste_type, only: :new
-  post 'city/new', to: 'city#create'
+  post 'waste_type/new', to: 'waste_type#create'
 end
