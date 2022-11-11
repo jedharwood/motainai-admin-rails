@@ -20,4 +20,7 @@ Rails.application.routes.draw do
   patch 'city/:id/edit', to: 'city#update'
   put 'city/:id/edit', to: 'city#update'
   delete 'city/:id', to: 'city#destroy'
+
+  resources :waste_type, only: :new
+  post 'city/new', to: 'city#create'
 end
