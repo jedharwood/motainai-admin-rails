@@ -4,5 +4,6 @@ FactoryBot.define do
     description { Faker::Lorem.sentence }
     instructions { Faker::Lorem.paragraph }
     irregular_frequency { Faker::Lorem.sentence }
+    city_identifier { Faker::Number.number(digits: 2) }
   end
 end

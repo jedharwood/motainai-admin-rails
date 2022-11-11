@@ -12,6 +12,7 @@ class WasteTypeController < ApplicationController
         @city = City.find_by(id: session[:city_id])
         @rule_days = RuleDay.where(city_id: session[:city_id]).order(:code)
         @waste_type = WasteType.new(params.require(:waste_type).permit(:rule_day_id, :name, :description, :instructions, :irregular_frequency))
+        @waste_type.city_identifier = session[:city_id]
         
         respond_to do |format|
             format.html do
