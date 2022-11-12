@@ -7,6 +7,7 @@ class CityController < ApplicationController
 
   def show
     @city = City.find(params[:id])
+    @waste_types = WasteType.where(city_identifier: @city.id)
   end
 
   def new

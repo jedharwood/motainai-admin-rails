@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe RuleDay, type: :model do
   it { should belong_to :city }
+  it { should have_many(:waste_types).dependent(:destroy) }
 
   describe 'validations' do
     subject { FactoryBot.build(:rule_day) }

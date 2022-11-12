@@ -1,17 +1,17 @@
 <%= form_with model: @city, url: edit_city_path, method: :patch, local: true, scope: :city do |f| %>
     <div class="w-full sm:w-1/2 inline-block mt-4">
-        <div class="rounded-md shadow-sm -space-y-px">
-            <div class="grid">
-                <%= f.label :name, "Prefecture", class: "text-sm text-left" %>
-                <%= f.collection_select :prefecture_id, @prefectures, :id, :name, { prompt: 'Prefecture' }, { class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 rounded-md focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800 focus:z-10 sm:text-sm mb-4" } %>
+        <div class="shadow-sm -space-y-px focus:z-10">
+            <div>
+                <%= f.label :prefecture_id, "Prefecture", class: "sr-only" %>
+                <%= f.collection_select :prefecture_id, @prefectures, :id, :name, { prompt: 'Prefecture' }, { class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 rounded-md focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800 sm:text-sm mb-4" } %>
             </div>
-            <div class="grid">
-                <%= f.label :name, "City name", class: "text-sm text-left" %>
-                <%= f.text_field :name, autofocus: true, placeholder: "City name", class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 rounded-md focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800 focus:z-10 sm:text-sm mb-4" %>
+            <div>
+                <%= f.label :name, "City name", class: "sr-only" %>
+                <%= f.text_field :name, autofocus: true, placeholder: "City name", class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 rounded-md focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800 sm:text-sm mb-4" %>
             </div>
-            <div class="grid">
-                <%= f.label :name, "Rating", class: "text-sm text-left" %>
-                <%= f.number_field :rating, min: 0, max: 5, step: 0.1, autofocus: true, placeholder: "City rating", class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 rounded-md focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800 focus:z-10 sm:text-sm mb-4" %>
+            <div>
+                <%= f.label :rating, "Rating", class: "sr-only" %>
+                <%= f.number_field :rating, min: 0, max: 5, step: 0.1, autofocus: true, placeholder: "City rating", class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 rounded-md focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800 sm:text-sm mb-4" %>
             </div>
         </div>
         <div>
