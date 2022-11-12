@@ -4,3 +4,46 @@
     <%= link_to "Edit", edit_city_path(@city), class: "px-6 py-4 px-2 text-teal-500 hover:text-teal-300 focus:underline" %>
     <%= button_to "Delete", city_path(@city), method: :delete, class: "px-6 py-4 px-2 text-teal-500 hover:text-teal-300 focus:underline" %>
 </span>
+<div class="border-t">
+    <h4 class="text-2xl leading-6 text-gray-900 my-3">Rules</h4>
+    <%= link_to "Add a rule", new_waste_type_path(@city), class: "main-button w-full sm:w-1/2 inline-flex items-center justify-center px6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-teal-500 hover:bg-teal-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-800" %>
+</div>
+
+<div class="flex justify-center text-left"> 
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                <div class="overflow-hidden">
+                    <table>
+                        <thead class="bg-white border-b">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">
+                                    Day
+                                </th>
+                                <th scope="col" class="px-6 py-4">
+                                    Name
+                                </th>
+                                <th scope="col" class="px-6 py-4">
+                                    Edit
+                                </th>
+                                <th scope="col" class="px-6 py-4">
+                                    Delete
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% @waste_types.each do |w| %>
+                                <tr class="border-b hover:bg-gray-100 whitespace-nowrap">
+                                    <td class="px-6 py-4"><%= w.rule_day.name %></td>
+                                    <td class="px-6 py-4"><%= w.name %></td>
+                                    <td class="px-6 py-4">Placeholder</td>
+                                    <td class="px-6 py-4">Placeholder</td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
