@@ -54,12 +54,33 @@ tokyo = Prefecture.create(code: 520, name: 'Tokyo')
 kanagawa = Prefecture.create(code: 530, name: 'Kanagawa')
 
 # Cities
-City.create(prefecture_id: akita.id, name: 'Yokote', rating: 3.5)
-City.create(prefecture_id: tokyo.id, name: 'Koenji', rating: 2.5)
+yokote = City.create(prefecture_id: akita.id, name: 'Yokote', rating: 3.5)
+koenji = City.create(prefecture_id: tokyo.id, name: 'Koenji', rating: 2.5)
 City.create(prefecture_id: tokyo.id, name: 'Shibuya', rating: 1.5)
 City.create(prefecture_id: kanagawa.id, name: 'Yokohama', rating: 5)
 City.create(prefecture_id: kanagawa.id, name: 'Zushi', rating: 4)
 City.create(prefecture_id: kanagawa.id, name: 'Fujisawa', rating: 0)
+
+# Rules
+def create_rule(rule_day_id, city_identifier, name, description = nil, instructions = nil, irregular_frequency = nil)
+  WasteType.create(rule_day_id:, city_identifier:, name:, description:,
+                   instructions:, irregular_frequency:)
+end
+
+def create_rules_for_city(city)
+  create_rule(city.rule_days[0].id, city.id, 'Acid')
+  create_rule(city.rule_days[0].id, city.id, 'Batteries')
+  create_rule(city.rule_days[0].id, city.id, 'Clock parts')
+  create_rule(city.rule_days[1].id, city.id, 'With all parameters', Faker::Lorem.sentence, Faker::Lorem.paragraph,
+              Faker::Lorem.sentence)
+  create_rule(city.rule_days[3].id, city.id, 'Missing description', nil, Faker::Lorem.paragraph, Faker::Lorem.sentence)
+  create_rule(city.rule_days[4].id, city.id, 'Missing instructions', Faker::Lorem.sentence, nil, Faker::Lorem.sentence)
+  create_rule(city.rule_days[6].id, city.id, 'Missing irregular frequency', Faker::Lorem.sentence,
+              Faker::Lorem.paragraph)
+end
+
+create_rules_for_city(yokote)
+create_rules_for_city(koenji)
 
 # Users
 def create_user_and_update_profile(idx, first_name = nil, last_name = nil)
