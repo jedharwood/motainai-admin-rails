@@ -1,0 +1,20 @@
+<div class="flex justify-center mt-2">
+    <div class="text-left w-full sm:w-1/2 sm:text-sm font-normal">
+        <p class="border-b text-sm mb-1 font-semibold">Type</p>
+        <p class="mb-3"><%= @waste_type.name %></p>
+        <% if @waste_type.description.present? %>
+            <p class="border-b text-sm mb-1 font-semibold">Description</p>
+            <p class="mb-3"><%= @waste_type.description %></p>
+        <% end %>
+        <% if @waste_type.instructions.present? %>
+            <p class="border-b text-sm mb-1 font-semibold">Disposal instructions</p>
+            <p class="mb-3"><%= @waste_type.instructions %></p>
+        <% end %>
+        <% if @waste_type.irregular_frequency.present? %>
+            <p class="border-b text-sm mb-1 font-semibold">Irregular collection frequency</p>
+            <p class="mb-3"><%= @waste_type.irregular_frequency %></p>
+        <% end %>
+    </div>
+</div>
+
+
