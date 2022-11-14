@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class WasteTypeController < ApplicationController
+  def show
+    @waste_type = WasteType.find_by(id: params[:id])
+    @city = City.find_by(id: @waste_type.city_identifier)
+  end
+
   def new
     @city = City.find_by(id: params[:format])
     @rule_days = RuleDay.where(city_id: params[:format]).order(:code)
