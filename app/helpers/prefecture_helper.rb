@@ -6,6 +6,6 @@ module PrefectureHelper
   end
 
   def get_number_of_rules_by_city_id(params)
-     WasteType.where(city_identifier: params[:id]).count 
+    WasteType.where(city_identifier: params[:id]).count
   end
 end

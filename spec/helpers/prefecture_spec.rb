@@ -19,7 +19,9 @@ RSpec.describe PrefectureHelper, type: :helper do
       expect(result).to eq 2
     end
   end
+end
 
+RSpec.describe PrefectureHelper, type: :helper do
   describe 'get_number_of_rules_by_city_id' do
     let(:city_without_rules) { create(:city) }
     let(:city_with_rules) { create(:city) }
@@ -31,13 +33,10 @@ RSpec.describe PrefectureHelper, type: :helper do
 
     it 'returns number of rules if city has associated rules' do
       rule_day = RuleDay.create!(city_id: city_with_rules.id, name: 'Monday', code: 0)
-      WasteType.create!(city_identifier: city_with_rules.id, name: 'Test Waste Type 1', rule_day: rule_day)
-      WasteType.create!(city_identifier: city_with_rules.id, name: 'Test Waste Type 2', rule_day: rule_day)
+      WasteType.create!(city_identifier: city_with_rules.id, name: 'Test Waste Type 1', rule_day:)
+      WasteType.create!(city_identifier: city_with_rules.id, name: 'Test Waste Type 2', rule_day:)
       result = get_number_of_rules_by_city_id(city_with_rules)
       expect(result).to eq 2
     end
   end
 end
-
-
-
