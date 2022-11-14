@@ -1,14 +1,15 @@
-<p>Prefecture: <%= link_to @city.prefecture.name, prefecture_path(@city.prefecture), class: "px-6 py-4 px-2 text-teal-500 hover:text-teal-300 focus:underline" %></p>
-<p>Rating: <%= @city.rating %></p>
-<span class="inline-flex">
-    <%= link_to "Edit", edit_city_path(@city), class: "px-6 py-4 px-2 text-teal-500 hover:text-teal-300 focus:underline" %>
-    <%= button_to "Delete", city_path(@city), method: :delete, class: "px-6 py-4 px-2 text-teal-500 hover:text-teal-300 focus:underline", form: { data: { turbo_confirm: "Are you sure you want to delete #{@city.name}?" } } %>
-</span>
+<div class="mt-4">
+    <p>Prefecture: <%= link_to @city.prefecture.name, prefecture_path(@city.prefecture), class: "px-6 py-4 px-2 text-teal-500 hover:text-teal-300 focus:underline" %></p>
+    <p>Rating: <%= @city.rating %></p>
+    <span class="inline-flex">
+        <%= link_to "Edit", edit_city_path(@city), class: "px-6 py-4 px-2 text-teal-500 hover:text-teal-300 focus:underline" %>
+        <%= button_to "Delete", city_path(@city), method: :delete, class: "px-6 py-4 px-2 text-teal-500 hover:text-teal-300 focus:underline", form: { data: { turbo_confirm: "Are you sure you want to delete #{@city.name}?" } } %>
+    </span>
+</div>
 <div class="border-t">
     <h4 class="text-2xl leading-6 text-gray-900 my-3">Rules</h4>
     <%= link_to "Add a rule", new_waste_type_path(@city), class: "main-button w-full sm:w-1/2 inline-flex items-center justify-center px6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-teal-500 hover:bg-teal-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-800" %>
 </div>
-
 <div class="flex justify-center text-left"> 
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -31,10 +32,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% @waste_types.each do |w| %>
+                            <% @waste_types.each do |waste_type| %>
                                 <tr class="border-b hover:bg-gray-100 whitespace-nowrap">
-                                    <td class="px-6 py-4"><%= w.rule_day.name %></td>
-                                    <td class="px-6 py-4"><%= w.name %></td>
+                                    <td class="px-6 py-4"><%= waste_type.rule_day.name %></td>
+                                    <td class="px-6 py-4 px-2 text-teal-500 hover:text-teal-300 focus:underline"><%= link_to waste_type.name, waste_type_path(waste_type) %></td>
                                     <td class="px-6 py-4">Placeholder</td>
                                     <td class="px-6 py-4">Placeholder</td>
                                 </tr>
