@@ -7,7 +7,7 @@ class CityController < ApplicationController
 
   def show
     @city = City.find(params[:id])
-    @waste_types = WasteType.where(city_identifier: @city.id)
+    @waste_types = WasteType.where(city_identifier: @city.id).includes(:rule_day).order('rule_days.code', :name)
   end
 
   def new
