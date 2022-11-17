@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :waste_type do
+    rule_day { create(:rule_day) }
     name { Faker::Lorem.word }
     description { Faker::Lorem.sentence }
     instructions { Faker::Lorem.paragraph }

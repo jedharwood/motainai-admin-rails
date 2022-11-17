@@ -7,6 +7,7 @@ RSpec.describe WasteType, type: :model do
 
   describe 'validations' do
     subject { FactoryBot.build(:waste_type) }
+    it { should validate_presence_of(:rule_day) }
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:city_identifier) }
   end
