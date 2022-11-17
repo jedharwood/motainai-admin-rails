@@ -1,25 +1,25 @@
 <%= form_with model: @waste_type, url: waste_type_new_path, method: :post, local: true, scope: :waste_type do |f| %>
     <div class="w-full sm:w-1/2 inline-block mt-4">
-        <div class="rounded-md shadow-sm -space-y-px">
+        <div class="shadow-sm -space-y-px focus:z-10">
             <div>
                 <%= f.label :rule_day_id, "Day", class: "sr-only" %>
-                <%= f.collection_select :rule_day_id, @rule_days, :id, :name, { prompt: 'Day' }, { class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 rounded-md focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800 focus:z-10 sm:text-sm mb-4" } %>
+                <%= f.collection_select :rule_day_id, @rule_days, :id, :name, { prompt: 'Day' }, { class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 rounded-md focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800 sm:text-sm mb-4" } %>
             </div>
             <div>
                 <%= f.label :name, "Waste type", class: "sr-only" %>
-                <%= f.text_field :name, autofocus: true, placeholder: "Waste type", class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 rounded-md focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800 focus:z-10 sm:text-sm mb-4" %>
+                <%= f.text_field :name, autofocus: true, placeholder: "Waste type", class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 rounded-md focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800 sm:text-sm mb-4" %>
             </div>
             <div>
                 <%= f.label :description, "Description", class: "sr-only" %>
-                <%= f.text_area :description, autofocus: true, placeholder: "Description", class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 rounded-md focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800 focus:z-10 sm:text-sm mb-4" %>
+                <%= f.text_area :description, autofocus: true, placeholder: "Description", class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 rounded-md focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800 sm:text-sm mb-4" %>
             </div>
             <div>
                 <%= f.label :instructions, "Disposal instructions", class: "sr-only" %>
-                <%= f.text_area :instructions, autofocus: true, placeholder: "Disposal instructions", class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 rounded-md focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800 focus:z-10 sm:text-sm mb-4" %>
+                <%= f.text_area :instructions, autofocus: true, placeholder: "Disposal instructions", class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 rounded-md focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800 sm:text-sm mb-4" %>
             </div>
             <div>
                 <%= f.label :irregular_frequency, "Irregularities in collection schedule", class: "sr-only" %>
-                <%= f.text_area :irregular_frequency, autofocus: true, placeholder: "Irregularities in collection schedule", class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 rounded-md focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800 focus:z-10 sm:text-sm mb-4" %>
+                <%= f.text_area :irregular_frequency, autofocus: true, placeholder: "Irregularities in collection schedule", class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 rounded-md focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800 sm:text-sm mb-4" %>
             </div>
         </div>
         <div>
