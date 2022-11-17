@@ -50,7 +50,8 @@ class WasteTypeController < ApplicationController
 
     respond_to do |format|
       format.html do
-        if @waste_type.update(params.require(:waste_type).permit(:name, :description, :instructions, :irregular_frequency, :rule_day_id))
+        if @waste_type.update(params.require(:waste_type).permit(:name, :description, :instructions,
+                                                                 :irregular_frequency, :rule_day_id))
           flash[:success] = 'Rule updated successfully'
           redirect_to city_path(@city)
         else
