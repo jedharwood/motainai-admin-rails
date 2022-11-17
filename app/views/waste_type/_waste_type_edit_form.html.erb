@@ -1,4 +1,4 @@
-<%= form_with model: @waste_type, url: waste_type_new_path, method: :post, local: true, scope: :waste_type do |f| %>
+<%= form_with model: @waste_type, url: edit_waste_type_path, method: :patch, local: true, scope: :waste_type do |f| %>
     <div class="w-full sm:w-1/2 inline-block mt-4">
         <div class="shadow-sm -space-y-px focus:z-10">
             <div>
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div>
-            <%= f.submit "Add", class: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-teal-500 hover:bg-teal-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-800" %>
+            <%= f.submit "Update", class: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-teal-500 hover:bg-teal-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-800" %>
         </div>
     </div>
 <% end %>

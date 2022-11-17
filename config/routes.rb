@@ -23,4 +23,7 @@ Rails.application.routes.draw do
 
   resources :waste_type, only: %i[new show]
   post 'waste_type/new', to: 'waste_type#create'
+  get 'waste_type/:id/edit', to: 'waste_type#edit', as: 'edit_waste_type'
+  patch 'waste_type/:id/edit', to: 'waste_type#update'
+  put 'waste_type/:id/edit', to: 'waste_type#update'
 end

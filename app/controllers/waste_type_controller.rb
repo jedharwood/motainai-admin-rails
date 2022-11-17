@@ -33,4 +33,32 @@ class WasteTypeController < ApplicationController
       end
     end
   end
+
+  def edit
+    @waste_type = WasteType.find_by(id: params[:id])
+    @city = City.find_by(id: @waste_type.city_identifier)
+    @rule_days = RuleDay.where(city_id: @city.id).order(:code)
+    respond_to do |format|
+      format.html { render :edit, locals: { waste_type: @waste_type } }
+    end
+  end
+
+  def update
+    @waste_type = WasteType.find_by(id: params[:id])
+    @city = City.find_by(id: @waste_type.city_identifier)
+    @rule_days = RuleDay.where(city_id: @city.id).order(:code)
+
+    respond_to do |format|
+      format.html do
+        if @waste_type.update(params.require(:waste_type).permit(:name, :description, :instructions,
+                                                                 :irregular_frequency, :rule_day_id))
+          flash[:success] = 'Rule updated successfully'
+          redirect_to city_path(@city)
+        else
+          flash.now[:error] = 'Error: Rule could not be updated'
+          render :edit, locals: { waste_type: @waste_type }, status: :unprocessable_entity
+        end
+      end
+    end
+  end
 end
