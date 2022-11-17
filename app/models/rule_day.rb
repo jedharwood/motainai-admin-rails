@@ -3,6 +3,7 @@
 class RuleDay < ApplicationRecord
   validates :code, presence: true
   validates :name, presence: true
+  validates :city, presence: true
 
   has_many :waste_types, dependent: :destroy
 
