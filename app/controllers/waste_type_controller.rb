@@ -61,4 +61,17 @@ class WasteTypeController < ApplicationController
       end
     end
   end
+
+  def destroy
+    @waste_type = WasteType.find(params[:id])
+    @waste_type.destroy
+    @city = City.find_by(id: @waste_type.city_identifier)
+
+    respond_to do |format|
+      format.html do
+        flash[:success] = 'Rule removed successfully'
+        redirect_to city_path(@city)
+      end
+    end
+  end
 end

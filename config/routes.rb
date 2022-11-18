@@ -26,4 +26,5 @@ Rails.application.routes.draw do
   get 'waste_type/:id/edit', to: 'waste_type#edit', as: 'edit_waste_type'
   patch 'waste_type/:id/edit', to: 'waste_type#update'
   put 'waste_type/:id/edit', to: 'waste_type#update'
+  delete 'waste_type/:id', to: 'waste_type#destroy'
 end
