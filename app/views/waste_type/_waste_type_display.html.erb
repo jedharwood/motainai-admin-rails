@@ -16,6 +16,7 @@
         <% end %>
     </div>
 </div>
-<%= link_to "Edit", edit_waste_type_path(@waste_type), class: "main-button w-full sm:w-1/2 inline-flex items-center justify-center px6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-teal-500 hover:bg-teal-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-800" %>
-
-
+<div class="space-y-4">
+    <%= link_to "Edit", edit_waste_type_path(@waste_type), class: "main-button w-full sm:w-1/2 inline-flex items-center justify-center px6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-teal-500 hover:bg-teal-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-800" %>
+    <%= button_to "Delete", waste_type_path(@waste_type), class: "main-button w-full sm:w-1/2 inline-flex items-center justify-center px6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-teal-500 hover:bg-teal-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-800", method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete #{@waste_type.name}?" } } %>
+</div>
