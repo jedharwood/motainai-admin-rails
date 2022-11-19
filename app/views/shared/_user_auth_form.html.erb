@@ -2,9 +2,7 @@
     <div>
         <div class="flex">
             <div class="flex-none text-slate-800 cursor-pointer" data-modal-target="closeButton">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentcolor" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m-15 0l15 15" />
-                </svg>
+                <%= inline_svg_tag('svg/x_icon.svg', class: 'h-6 w-6') %>
             </div>
             <div class="flex-grow">
                 <h3 class="pr-7 text-md leading-6 font-medium text-gray-900 text-center mb-4" id="modal-title">Log in or register</h3>
@@ -21,9 +19,7 @@
                 <label for="email" class="block text-xs font-medium text-gray-900">Email</label>
                 <input data-user-by-email-auth-target="emailInput" type="text" name="email" id="email" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="Email address">
                 <div data-user-by-email-auth-target="invalidSvg" class="hidden absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                    <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z">
-                    </svg>
+                    <%= inline_svg_tag('svg/bang_icon.svg', class: 'h-5 w-5 text-rose-500') %>
                 </div>                
             </div>
             <p data-user-by-email-auth-target="validationMessage" class="hidden mt-2 text-sm text-rose-500">Please provide a valid email address</p>
