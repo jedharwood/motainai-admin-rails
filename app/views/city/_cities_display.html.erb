@@ -1,35 +1,39 @@
 <div>
-    <%= link_to "Add a city", new_city_path, class: "main-button w-full sm:w-1/2 inline-flex items-center justify-center px6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-teal-500 hover:bg-teal-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-800" %>
+    <%= link_to "Add a city", new_city_path, class: "main-button w-full sm:w-1/2 inline-flex items-center justify-center px6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-teal-500 hover:bg-teal-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-800 mt-2" %>
     <div class="flex justify-center text-left"> 
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+            <div class="inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="overflow-hidden">
                     <table>
                         <thead class="bg-white border-b">
                             <tr>
-                                <th scope="col" class="px-6 py-4">
+                                <th scope="col" class="p-4">
                                     Prefecture
                                 </th>
-                                <th scope="col" class="px-6 py-4">
+                                <th scope="col" class="p-4">
                                     City
                                 </th>
-                                <th scope="col" class="px-6 py-4">
-                                    Has rules?
-                                </th>
-                                <th scope="col" class="px-6 py-4">
-                                    Edit
+                                <th scope="col" class="p-4">
+                                    Rules
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <% @cities.each do |city| %>
                                 <tr class="border-b hover:bg-gray-100 whitespace-nowrap">
-                                    <td class="px-6 py-4"><%= city.prefecture.name %></td>
-                                    <td class="px-6 py-4 px-2 text-teal-500 hover:text-teal-300 focus:underline"><%= link_to city.name, city_path(city) %></td>
-                                    <td class="px-6 py-4 font-normal">placeholder</td> 
-                                    <td class="px-6 py-4 font-normal">placeholder</td>
-                                    <td class="px-6 py-4 px-2 text-teal-500 hover:text-teal-300 focus:underline"><%= link_to "Edit", edit_city_path(city) %></td>
-                                    <td class="px-6 py-4 px-2 text-teal-500 hover:text-teal-300 focus:underline"><%= button_to "Delete", city_path(city), method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete #{city.name}?" } } %></td>
+                                    <td class="p-4 text-teal-500 hover:text-teal-300 focus:underline"><%= link_to city.prefecture.name, prefecture_path(city.prefecture) %></td>
+                                    <td class="p-4 text-teal-500 hover:text-teal-300 focus:underline"><%= link_to city.name, city_path(city) %></td>
+                                    <td class="p-4 font-normal text-center"><%= get_number_of_rules_by_city_id(city) %></td> 
+                                    <td class="px-2 py-4 text-teal-500 hover:text-teal-300 focus:underline">
+                                        <%= link_to edit_city_path(city) do %>
+                                            <%= inline_svg_tag('svg/edit_icon.svg', class: 'w-5 h-5') %>
+                                        <% end %>
+                                    </td>
+                                    <td class="px-2 py-4 text-teal-500 hover:text-teal-300 focus:underline delete-button">
+                                        <%= button_to city_path(city), method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete #{city.name}?" } } do %>
+                                            <%= inline_svg_tag('svg/delete_icon.svg', class: 'h-5 w-5') %>
+                                        <% end %>
+                                    </td>
                                 </tr>
                             <% end %>
                         </tbody>
