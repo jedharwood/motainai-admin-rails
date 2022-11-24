@@ -7,6 +7,7 @@ RSpec.describe 'Homes', type: :request do
     it 'succeeds' do
       get root_path
       expect(response).to be_successful
+      expect(response).to render_template(:index)
     end
   end
 end
