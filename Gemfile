@@ -38,6 +38,7 @@ group :development, :test do
   gem 'pry-byebug' # Debugging breakpoints
   gem "rspec-rails", "~> 5.1", ">= 5.1.2" # Testing framework
   gem "rubocop" # Ruby linter
+  gem "mailcatcher" 
 end
 
 group :development do
