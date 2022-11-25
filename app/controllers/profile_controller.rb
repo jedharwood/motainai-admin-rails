@@ -4,7 +4,7 @@ class ProfileController < ApplicationController
   end
 
   def edit
-    @profile = Profile.find_by(user_id: current_user.id)
+    @profile = Profile.find_by(user_id: current_user&.id)
     respond_to do |format|
       format.html { render :edit, locals: { profile: @profile } }
     end
