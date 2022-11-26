@@ -7,11 +7,11 @@ class Profile < ApplicationRecord
   belongs_to :user
 
   before_update :capitalize_names
-  
+
   private
+
   def capitalize_names
     self.first_name = first_name.capitalize
     self.last_name = last_name.capitalize
   end
 end
-
