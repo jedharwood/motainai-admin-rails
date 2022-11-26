@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Preview all emails at http://localhost:5000/rails/mailers/profile
 
 class ProfilePreview < ActionMailer::Preview

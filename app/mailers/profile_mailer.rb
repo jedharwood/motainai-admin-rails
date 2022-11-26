@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProfileMailer < ApplicationMailer
   default from: 'admin1@motainai.co.jp'
 
