@@ -1,0 +1,13 @@
+<% if approved_user?(user_signed_in?, current_user&.profile) %>
+    <%= render 'authorization_filter', 
+        page_title: 'Update profile', 
+        description: 'Review your profile information', 
+        page_content: 'profile_edit_form' 
+    %>
+<% else %>
+    <%= render 'authorization_filter', 
+        page_title: 'Update profile', 
+        description: 'Please update your profile information. You will be contacted by an administrator once your account is approved', 
+        page_content: 'profile_edit_form' 
+    %>
+<% end %>

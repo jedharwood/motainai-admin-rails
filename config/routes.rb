@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users
+  # devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -27,4 +28,9 @@ Rails.application.routes.draw do
   patch 'waste_type/:id/edit', to: 'waste_type#update'
   put 'waste_type/:id/edit', to: 'waste_type#update'
   delete 'waste_type/:id', to: 'waste_type#destroy'
+
+  resources :profile, only: :show
+  get 'profile/:id/edit', to: 'profile#edit', as: 'edit_profile'
+  patch 'profile/:id/edit', to: 'profile#update'
+  put 'profile/:id/edit', to: 'profile#update'
 end

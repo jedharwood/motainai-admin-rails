@@ -8,6 +8,7 @@ RSpec.describe 'Prefecture', type: :request do
     it 'succeeds' do
       get prefecture_path(prefecture)
       expect(response).to be_successful
+      expect(response).to render_template(:show)
     end
   end
 end

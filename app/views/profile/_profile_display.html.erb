@@ -1,0 +1,21 @@
+<div>
+    <div class="flex justify-center mt-2">
+        <div class="text-left w-full sm:w-1/2 sm:text-sm font-normal">
+            <p class="border-b text-sm mb-1 font-semibold">Email address</p>
+            <p class="mb-3"><%= current_user.email %></p>
+            <% if @profile.first_name.present? %>
+                <p class="border-b text-sm mb-1 font-semibold">First name</p>
+                <p class="mb-3"><%= @profile.first_name %></p>
+            <% end %>
+            <% if @profile.last_name.present? %>
+                <p class="border-b text-sm mb-1 font-semibold">Last name</p>
+                <p class="mb-3"><%= @profile.last_name %></p>
+            <% end %>
+            <p class="border-b text-sm mb-1 font-semibold">Approved?</p>
+            <p class="mb-3"><%= @profile.approved %></p>
+        </div>
+    </div>
+    <div class="space-y-4 mt-2">
+        <%= link_to "Edit", edit_profile_path(@profile), class: "main-button w-full sm:w-1/2 inline-flex items-center justify-center px6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-teal-500 hover:bg-teal-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-800" %>
+    </div>
+</div>
