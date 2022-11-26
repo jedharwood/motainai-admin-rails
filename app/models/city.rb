@@ -10,6 +10,8 @@ class City < ApplicationRecord
   belongs_to :prefecture
 
   after_create :create_rule_days
+
+  private
   def create_rule_days
     { 1 => 'Monday', 2 => 'Tuesday', 3 => 'Wednesday', 4 => 'Thursday', 5 => 'Friday', 6 => 'Saturday',
       7 => 'Sunday' }.each do |code, name|

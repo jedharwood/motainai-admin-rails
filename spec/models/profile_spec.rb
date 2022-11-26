@@ -12,4 +12,13 @@ RSpec.describe Profile, type: :model do
     it { should_not validate_presence_of(:first_name).on(:create) }
     it { should_not validate_presence_of(:last_name).on(:create) }
   end
+  
+  describe 'capitalize_names' do
+    it 'capitalizes names' do
+      profile = create(:profile)
+      profile.update(first_name: 'bruce', last_name: 'willis')
+      expect(profile.first_name).to eq 'Bruce'
+      expect(profile.last_name).to eq 'Willis'
+    end
+  end
 end
