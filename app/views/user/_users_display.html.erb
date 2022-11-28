@@ -15,7 +15,7 @@
                                 Profile?
                             </th>
                             <th scope="col" class="p-4 text-center">
-                                Authorized?
+                                Approved?
                             </th>
                         </tr>
                     </thead>
@@ -25,14 +25,16 @@
                                 <td class="p-4 text-teal-500 hover:text-teal-300 focus:underline"><%= link_to user.email, profile_path(user.profile) %></td>
                                 <td class="p-4 font-normal"><%= user.created_at.to_formatted_s(:uk_short_date) %></td>
                                 <td class="p-4 text-teal-500 flex justify-center">
-                                    <% if user_has_full_name(user.profile) %>
-                                        <%= inline_svg_tag('svg/yes_icon.svg', class: 'w-5 h-5') %>
-                                    <% else %>
-                                        <div class="flex justify-center">
+                                    <%= link_to profile_path(user.profile), class: "hover:text-teal-300 focus:underline" do %>
+                                        <% if user_has_full_name(user.profile) %>
+                                            <%= inline_svg_tag('svg/yes_icon.svg', class: 'w-5 h-5') %>
+                                        <% else %>
                                             <%= inline_svg_tag('svg/no_icon.svg', class: 'w-5 h-5') %>
-                                            <div class="pl-2">
-                                                <%= inline_svg_tag('svg/mail_icon.svg', class: 'w-5 h-5 hover:text-teal-300 focus:underline') %> 
-                                            </div>
+                                        <% end %>
+                                    <% end %>
+                                    <% unless user_has_full_name(user.profile) %>
+                                        <div class="pl-2">
+                                            <%= inline_svg_tag('svg/mail_icon.svg', class: 'w-5 h-5 hover:text-teal-300 focus:underline') %> 
                                         </div>
                                     <% end %>
                                 </td>
@@ -43,9 +45,13 @@
                                         <% else %>
                                             <%= inline_svg_tag('svg/no_icon.svg', class: 'w-5 h-5') %>
                                         <% end %>
-                                        <div class="pl-2">
-                                            <%= inline_svg_tag('svg/edit_icon.svg', class: 'w-5 h-5 hover:text-teal-300 focus:underline') %> 
-                                        </div>
+                                        <% if user_has_full_name(user.profile) %>
+                                            <div class="pl-2">
+                                                <%= button_to approve_profile_path(user.profile) do %>
+                                                    <%= inline_svg_tag('svg/edit_icon.svg', class: 'w-5 h-5 hover:text-teal-300 focus:underline') %> 
+                                                <% end %>  
+                                            </div>
+                                        <% end %>
                                     </div>
                                 </td>
                             </tr>
