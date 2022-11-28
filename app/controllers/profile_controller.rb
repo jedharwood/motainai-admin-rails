@@ -27,4 +27,16 @@ class ProfileController < ApplicationController
       end
     end
   end
+
+  def approve
+    @profile = Profile.find_by(id: params[:id])
+    @profile.approved = !@profile.approved
+    if @profile.save 
+      flash[:success] = "#{@profile.first_name} #{@profile.last_name}'s profile has been approved. A welcome email has been sent to #{@profile.user.email}"
+      # send mail
+    else
+      flash[:error] = "Error: #{@profile.first_name} #{@profile.last_name}'s profile has not been approved"
+    end
+    redirect_to user_index_path
+  end
 end
