@@ -33,4 +33,6 @@ Rails.application.routes.draw do
   get 'profile/:id/edit', to: 'profile#edit', as: 'edit_profile'
   patch 'profile/:id/edit', to: 'profile#update'
   put 'profile/:id/edit', to: 'profile#update'
+
+  resources :user, only: :index
 end
