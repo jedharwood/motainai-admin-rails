@@ -31,12 +31,27 @@ class ProfileController < ApplicationController
   def approve
     @profile = Profile.find_by(id: params[:id])
     @profile.approved = !@profile.approved
-    if @profile.save 
-      flash[:success] = "#{@profile.first_name} #{@profile.last_name}'s profile has been approved. A welcome email has been sent to #{@profile.user.email}"
-      # send mail
+    if @profile.save
+      flash[:success] =
+        "#{get_profile_name(@profile)}'s #{get_success_message_text(@profile.approved)}. An email has been sent to #{@profile.user.email}"
+      send_approval_mail(@profile)
     else
-      flash[:error] = "Error: #{@profile.first_name} #{@profile.last_name}'s profile has not been approved"
+      flash[:error] = "Error: Could not update #{get_profile_name(@profile)}'s profile"
     end
     redirect_to user_index_path
+  end
+
+  private
+
+  def get_profile_name(profile)
+    "#{profile.first_name} #{profile.last_name}"
+  end
+
+  def get_success_message_text(approved)
+    approved ? 'profile has been approved' : 'approval has been revoked'
+  end
+
+  def send_approval_mail(profile)
+    profile.approved ? ProfileMailer.with(user: profile.user).profile_approved.deliver_later : ProfileMailer.with(user: profile.user).approval_revoked.deliver_later
   end
 end
