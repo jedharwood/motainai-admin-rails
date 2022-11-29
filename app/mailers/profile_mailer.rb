@@ -25,8 +25,9 @@ class ProfileMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Approval revoked')
   end
 
-  private 
-# This method is shared with profile_controller - where can I define it so it is accessible to both controller and mailer?
+  private
+
+  # This method is shared with profile_controller - where can I define it so it is accessible to both controller and mailer?
   def get_profile_name(profile)
     "#{profile.first_name} #{profile.last_name}"
   end
