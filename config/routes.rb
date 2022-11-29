@@ -33,4 +33,7 @@ Rails.application.routes.draw do
   get 'profile/:id/edit', to: 'profile#edit', as: 'edit_profile'
   patch 'profile/:id/edit', to: 'profile#update'
   put 'profile/:id/edit', to: 'profile#update'
+  post 'profile/:id/approve', to: 'profile#approve', as: 'approve_profile'
+
+  resources :user, only: :index
 end

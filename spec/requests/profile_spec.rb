@@ -3,7 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Profiles', type: :request do
-  describe 'GET /index' do
-    pending "add some examples (or delete) #{__FILE__}"
+  describe 'GET /show' do
+    let(:profile) { create(:profile) }
+    it 'succeeds' do
+      get profile_path(profile)
+      expect(response).to be_successful
+      expect(response).to render_template(:show)
+    end
   end
 end

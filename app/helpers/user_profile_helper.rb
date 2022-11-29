@@ -13,9 +13,7 @@ module UserProfileHelper
     signed_in && user_has_full_name(profile) ? "#{profile&.first_name} #{profile&.last_name}" : ''
   end
 
-  private
-
   def user_has_full_name(profile)
-    profile&.first_name && profile&.last_name
+    !profile&.first_name.to_s.empty? && !profile&.last_name.to_s.empty?
   end
 end

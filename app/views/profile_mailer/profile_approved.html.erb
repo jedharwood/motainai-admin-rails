@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to Motainai Admin, <%= @user_name %></h1>
+    <p>
+      Your account has been approved,
+      your username is: <%= @user.email %>.<br>
+    </p>
+    <p>
+      You can sign in at the following link: <%= link_to @url, @url %>.
+    </p>
+    <p>Welcome aboard.</p>
+  </body>
+</html>

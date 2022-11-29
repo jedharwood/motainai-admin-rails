@@ -15,6 +15,8 @@ class SessionsController < Devise::SessionsController
   private
 
   def user_has_full_name(profile)
-    profile&.first_name && profile&.last_name
+    # profile&.first_name && profile&.last_name
+    # Same method in user_profile_helper - how can I access helper from here?
+    !profile&.first_name.to_s.empty? && !profile&.last_name.to_s.empty?
   end
 end

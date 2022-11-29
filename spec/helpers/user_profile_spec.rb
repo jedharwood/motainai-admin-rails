@@ -74,3 +74,28 @@ RSpec.describe UserProfileHelper, type: :helper do
     end
   end
 end
+
+RSpec.describe UserProfileHelper, type: :helper do
+  describe 'user_has_full_name' do
+    it 'returns false if both names are empty' do
+      profile_with_no_names = Profile.create
+      result = user_has_full_name(profile_with_no_names)
+      expect(result).to be false
+    end
+
+    it 'returns false if first_name is empty' do
+      result = user_has_full_name(profile_with_last_name)
+      expect(result).to be false
+    end
+
+    it 'returns false if last_name is empty' do
+      result = user_has_full_name(profile_with_first_name)
+      expect(result).to be false
+    end
+
+    it 'returns true if profile has first_name and last_name' do
+      result = user_has_full_name(profile_with_full_name)
+      expect(result).to be true
+    end
+  end
+end

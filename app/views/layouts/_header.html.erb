@@ -59,6 +59,7 @@
                             <% if approved_user?(user_signed_in?, current_user&.profile) %>
                                 <%= link_to "Cities", city_index_path, class: "block px-4 py-2 hover:bg-gray-100", id: "user-menu-item-2" %>
                                 <%= link_to "Add a city", new_city_path, class: "block px-4 py-2 hover:bg-gray-100", id: "user-menu-item-3" %>
+                                <%= link_to "Users", user_index_path, class: "block px-4 py-2 hover:bg-gray-100", id: "user-menu-item-3" %>
                             <% else %>
                                 <p class="block px-4 py-2" role="menuitem" tabindex="-1" id="user-menu-item-1">Restricted</p>
                             <% end %>
@@ -112,6 +113,7 @@
                     <% if approved_user?(user_signed_in?, current_user&.profile) %>
                         <%= link_to "Cities", city_index_path, class: "block rounded-md py-2 px-3 hover:bg-gray-700 hover:text-white", id: "user-menu-item-2" %>
                         <%= link_to "Add a city", new_city_path, class: "block rounded-md py-2 px-3 hover:bg-gray-700 hover:text-white", id: "user-menu-item-3" %>
+                        <%= link_to "Users", user_index_path, class: "block rounded-md py-2 px-3 hover:bg-gray-700 hover:text-white", id: "user-menu-item-4" %>
                     <% end %>
                 </div>
             </div>
