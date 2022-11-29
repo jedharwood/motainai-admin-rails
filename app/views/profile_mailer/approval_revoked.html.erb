@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>We're sorry to see you go, <%= @user_name %></h1>
+    <p>
+      Your approval has been revoked for the username: <%= @user.email %>.<br>
+    </p>
+    <p>
+      If you believe this is the result of an error please contact an admin at: <%= link_to @url, @url %> or by replying to this email.
+    </p>
+    <p>Thankyou.</p>
+  </body>
+</html>

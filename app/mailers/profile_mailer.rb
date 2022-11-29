@@ -13,8 +13,21 @@ class ProfileMailer < ApplicationMailer
 
   def profile_approved
     @user = params[:user]
-    @user_name = "#{@user.profile.first_name} #{@user.profile.last_name}"
+    @user_name = get_profile_name(@user.profile)
     @url = @@base_url
     mail(to: @user.email, subject: 'Profile approved')
+  end
+
+  def approval_revoked
+    @user = params[:user]
+    @user_name = get_profile_name(@user.profile)
+    @url = @@base_url
+    mail(to: @user.email, subject: 'Approval revoked')
+  end
+
+  private 
+# This method is shared with profile_controller - where can I define it so it is accessible to both controller and mailer?
+  def get_profile_name(profile)
+    "#{profile.first_name} #{profile.last_name}"
   end
 end

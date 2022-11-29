@@ -10,4 +10,8 @@ class ProfilePreview < ActionMailer::Preview
   def profile_approved
     ProfileMailer.with(user: User.first).profile_approved
   end
+
+  def approval_revoked
+    ProfileMailer.with(user: User.first).approval_revoked
+  end
 end
