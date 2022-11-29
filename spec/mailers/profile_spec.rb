@@ -3,8 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe ProfileMailer, type: :mailer do
+  let(:user) { create(:user) }
+
   describe "update_profile" do
-    let(:user) { create(:user) }
     let(:mail) { ProfileMailer.with(user: user).update_profile }
 
     it "renders the headers" do
@@ -23,7 +24,6 @@ RSpec.describe ProfileMailer, type: :mailer do
   end
 
   describe "profile_approved" do
-    let(:user) { create(:user) }
     let(:mail) { ProfileMailer.with(user: user).profile_approved }
 
     it "renders the headers" do
@@ -44,7 +44,6 @@ RSpec.describe ProfileMailer, type: :mailer do
   end
 
   describe "approval_revoked" do
-    let(:user) { create(:user) }
     let(:mail) { ProfileMailer.with(user: user).approval_revoked }
 
     it "renders the headers" do
