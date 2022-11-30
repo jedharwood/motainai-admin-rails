@@ -3,14 +3,17 @@
 require 'rails_helper'
 
 RSpec.describe 'Cities', type: :request do
+  let(:city_list) { create_list(:city, 3) } 
+
+  before(:example, clear_city_list: true) do
+    city_list = []
+  end
+  
   describe 'GET /index' do
-    let(:city_list) { create_list(:city, 3) } 
-      
     it 'succeeds' do
       get city_index_path
       expect(response).to be_successful
       expect(response.status).to eq(200)
-      expect(response).to render_template(:index)
     end
 
     it 'renders index template' do
@@ -19,19 +22,45 @@ RSpec.describe 'Cities', type: :request do
     end
 
     it "assigns @cities" do
-      get city_index_path
       expected = city_list.sort_by { |city| city.name } 
+      get city_index_path
       expect(assigns(:cities)).to eq(expected)
+    end
+
+    context 'if there are no cities in the db', clear_city_list: true do
+      it 'succeeds' do
+        get city_index_path
+        expect(response).to be_successful
+        expect(response.status).to eq(200)
+      end
+  
+      it 'renders index template' do
+        get city_index_path
+        expect(response).to render_template(:index)
+      end
+  
+      it "assigns @cities as an empty array" do
+        get city_index_path
+        expect(assigns(:cities)).to eq([])
+      end
     end
   end
 
   describe 'GET /show' do
-    let(:city) { create(:city) }
-    
     it 'succeeds' do
-      get city_path(city)
+      get city_path(city_list[0])
       expect(response).to be_successful
+      expect(response.status).to eq(200)
+    end
+
+    it 'renders show template' do
+      get city_path(city_list[0])
       expect(response).to render_template(:show)
+    end
+
+    it 'assigns @city' do
+      get city_path(city_list[0])
+      expect(assigns(:city)).to eq(city_list[0])
     end
   end
 
