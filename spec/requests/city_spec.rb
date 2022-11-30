@@ -65,19 +65,44 @@ RSpec.describe 'Cities', type: :request do
   end
 
   describe 'GET /new' do
-    let(:city) { create(:city) }
-    let(:prefecture) { create(:prefecture) }
-    it 'succeeds' do
-      get new_city_path
-      expect(response).to be_successful
-      expect(response).to render_template(:new)
+    context 'when no prefecture is pre-selected' do
+      it 'succeeds' do
+        get new_city_path
+        expect(response).to be_successful
+        expect(response.status).to eq(200)
+      end
+  
+      it 'renders new template' do
+        get new_city_path
+        expect(response).to render_template(:new)
+      end
+
+      it 'assigns @city with no prefecture_id' do
+        get new_city_path
+        expected_city = assigns(:city)
+        expect(expected_city.prefecture_id).to eq(nil)
+      end
     end
 
-    it 'succeeds when passed a prefecture' do
-      get new_city_path(prefecture)
-      expect(response).to be_successful
-      expect(response).to render_template(:new)
-      # Assert that response conytains appropriate prefecture
+    context 'when prefecture is pre-selected' do
+      let(:prefecture) { create(:prefecture) }
+
+      it 'succeeds' do
+        get new_city_path(prefecture)
+        expect(response).to be_successful
+        expect(response.status).to eq(200)
+      end
+  
+      it 'renders new template' do
+        get new_city_path(prefecture)
+        expect(response).to render_template(:new)
+      end
+
+      it 'assigns @city with pre-selected prefecture_id' do
+        get new_city_path(prefecture)
+        expected_city = assigns(:city)
+        expect(expected_city.prefecture_id).to eq(prefecture.id)
+      end
     end
   end
 end
