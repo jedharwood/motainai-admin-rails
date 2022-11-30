@@ -65,6 +65,8 @@ RSpec.describe 'Cities', type: :request do
   end
 
   describe 'GET /new' do
+    let(:prefecture_list) { create_list(:prefecture, 3) } 
+
     context 'when no prefecture is pre-selected' do
       it 'succeeds' do
         get new_city_path
@@ -77,6 +79,12 @@ RSpec.describe 'Cities', type: :request do
         expect(response).to render_template(:new)
       end
 
+      it 'assigns @prefectures' do
+        expected = prefecture_list.sort_by { |prefecture| prefecture.code } 
+        get new_city_path
+        expect(assigns(:prefectures)).to eq(expected)
+      end
+
       it 'assigns @city with no prefecture_id' do
         get new_city_path
         expected_city = assigns(:city)
@@ -85,23 +93,27 @@ RSpec.describe 'Cities', type: :request do
     end
 
     context 'when prefecture is pre-selected' do
-      let(:prefecture) { create(:prefecture) }
-
       it 'succeeds' do
-        get new_city_path(prefecture)
+        get new_city_path(prefecture_list[0])
         expect(response).to be_successful
         expect(response.status).to eq(200)
       end
   
       it 'renders new template' do
-        get new_city_path(prefecture)
+        get new_city_path(prefecture_list[0])
         expect(response).to render_template(:new)
       end
 
+      it 'assigns @prefectures' do
+        expected = prefecture_list.sort_by { |prefecture| prefecture.code } 
+        get new_city_path
+        expect(assigns(:prefectures)).to eq(expected)
+      end
+
       it 'assigns @city with pre-selected prefecture_id' do
-        get new_city_path(prefecture)
+        get new_city_path(prefecture_list[0])
         expected_city = assigns(:city)
-        expect(expected_city.prefecture_id).to eq(prefecture.id)
+        expect(expected_city.prefecture_id).to eq(prefecture_list[0].id)
       end
     end
   end
