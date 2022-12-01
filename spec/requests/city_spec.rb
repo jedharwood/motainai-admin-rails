@@ -216,4 +216,30 @@ RSpec.describe 'Cities', type: :request do
       end
     end
   end
+
+  describe 'GET /edit' do
+    it 'succeeds' do
+      get edit_city_path(city_list[0])
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+    end
+
+    # it 'assigns @prefectures' do
+    #   expected = prefecture_list.sort_by { |prefecture| prefecture.code }
+    #   get edit_city_path(city_list[0])
+    #   expect(assigns(:prefectures)).to eq(expected)
+    # end
+
+    it 'assigns @city' do
+      get edit_city_path(city_list[0])
+      expect(assigns(:city)).to eq(city_list[0])
+    end
+
+    it 'renders edit template' do
+      get edit_city_path(city_list[0])
+      expect(response).to render_template(:edit)
+    end
+  end
 end
+
+    
