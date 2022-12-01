@@ -10,6 +10,14 @@ RSpec.describe 'Cities', type: :request do
     city_list = []
   end
 
+  before(:example, fill_in_new_city_form: true) do
+    @new_city_params = { name: 'New City', prefecture_id: prefecture_list[0].id }
+  end
+
+  before(:example, fill_in_new_city_form_badly: true) do
+    @invalid_new_city_params = { name: 'Invalid New City', prefecture_id: 1 }
+  end
+
   describe 'GET /index' do
     it 'succeeds' do
       get city_index_path
@@ -120,43 +128,74 @@ RSpec.describe 'Cities', type: :request do
   end
 
   describe 'POST /create' do
-    it 'succeeds' do
-      post city_new_path, params: { city: { name: 'New City', prefecture_id: prefecture_list[0].id } }
-      expect(response.media_type).to eq('text/html')
-      expect(response).to have_http_status(:found)
-      expect(response.status).to eq(302)
+    context 'when successful', fill_in_new_city_form: true do
+      it 'returns status: found' do
+        post city_new_path, params: { city: @new_city_params }
+        expect(response.media_type).to eq('text/html')
+        expect(response).to have_http_status(:found)
+        expect(response.status).to eq(302)
+      end
+  
+      it 'assigns @prefectures' do
+        expected = prefecture_list.sort_by { |prefecture| prefecture.code }
+        post city_new_path, params: { city: @new_city_params }
+        expect(assigns(:prefectures)).to eq(expected)
+      end
+  
+      it 'assigns @city with a rating of zero' do
+        post city_new_path, params: { city: @new_city_params }
+        expected_city = assigns(:city)
+        expect(expected_city.name).to eq(@new_city_params[:name])
+        expect(expected_city.prefecture_id).to eq(prefecture_list[0].id)
+        expect(expected_city.rating).to eq(0)
+      end
+  
+      it 'increases City count by 1' do
+        expect{
+          post city_new_path, params: { city: @new_city_params }
+        }.to change(City,:count).by(1)
+      end
+  
+      it 'shows a success message' do
+        post city_new_path, params: { city: @new_city_params }
+        expect(flash[:success]).to eq('City saved successfully')
+      end
+  
+      it 'redirects to city_index_path' do
+        post city_new_path, params: { city: @new_city_params }
+        expect(response).to redirect_to(city_index_path)
+      end
     end
 
-    it 'assigns @prefectures' do
-      expected = prefecture_list.sort_by { |prefecture| prefecture.code }
-      post city_new_path, params: { city: { name: 'New City', prefecture_id: prefecture_list[0].id } }
-      expect(assigns(:prefectures)).to eq(expected)
-    end
-
-    it 'assigns @city with a rating of zero' do
-      post city_new_path, params: { city: { name: 'New City', prefecture_id: prefecture_list[0].id } }
-      expected_city = assigns(:city)
-      expect(expected_city.name).to eq('New City')
-      expect(expected_city.prefecture_id).to eq(prefecture_list[0].id)
-      expect(expected_city.rating).to eq(0)
-    end
-
-    it 'increases City count by 1' do
-      expect{
-        post city_new_path, params: { city: { name: 'New City', prefecture_id: prefecture_list[0].id } }
-      }.to change(City,:count).by(1)
-    end
-
-    it 'shows a success message' do
-      post city_new_path, params: { city: { name: 'New City', prefecture_id: prefecture_list[0].id } }
-      expect(flash[:success]).to eq('City saved successfully')
-    end
-
-    it 'redirects to city_index_path' do
-      post city_new_path, params: { city: { name: 'New City', prefecture_id: prefecture_list[0].id } }
-      expect(response).to redirect_to(city_index_path)
+    context 'when unsuccessful', fill_in_new_city_form_badly: true do
+      it 'returns status: unprocessable_entity' do
+        post city_new_path, params: { city: @invalid_new_city_params }
+        expect(response.media_type).to eq('text/html')
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response.status).to eq(422)
+      end
+  
+      it 'assigns @prefectures' do
+        expected = prefecture_list.sort_by { |prefecture| prefecture.code }
+        post city_new_path, params: { city: @invalid_new_city_params }
+        expect(assigns(:prefectures)).to eq(expected)
+      end
+  
+      it 'does not increase City count' do
+        expect{
+          post city_new_path, params: { city: @invalid_new_city_params }
+        }.to change(City,:count).by(0)
+      end
+  
+      it 'shows an error message' do
+        post city_new_path, params: { city: @invalid_new_city_params }
+        expect(flash[:error]).to eq('Error: City could not be saved')
+      end
+  
+      it 'renders new template' do
+        post city_new_path, params: { city: @invalid_new_city_params }
+        expect(response).to render_template(:new)
+      end  
     end
   end
 end
-
-
