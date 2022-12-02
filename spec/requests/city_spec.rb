@@ -281,7 +281,7 @@ RSpec.describe 'Cities', type: :request do
         expect(flash[:success]).to eq('City updated successfully')
       end
 
-      it 'redirects to city_index_path' do
+      it 'redirects to city_path' do
         patch edit_city_path(city_list[0]), params: { city: @edited_city_params }
         expect(response).to redirect_to(city_path(city_list[0]))
       end
@@ -300,7 +300,7 @@ RSpec.describe 'Cities', type: :request do
         patch edit_city_path(city_list[0]), params: { city: @invalid_city_params }
         expect(assigns(:prefectures)).to eq(expected)
       end
-
+# does not increase number of cities
       it 'shows an error message' do
         patch edit_city_path(city_list[0]), params: { city: @invalid_city_params }
         expect(flash[:error]).to eq('Error: City could not be updated')
@@ -310,6 +310,36 @@ RSpec.describe 'Cities', type: :request do
         patch edit_city_path(city_list[0]), params: { city: @invalid_city_params }
         expect(response).to render_template(:edit)
       end
+    end
+  end
+
+  describe 'DELETE /destroy' do
+      it 'returns status: found' do
+      delete city_path(city_list[0])
+      expect(response.media_type).to eq('text/html')
+      expect(response).to have_http_status(:found)
+      expect(response.status).to eq(302)
+    end
+
+    it 'assigns @city' do
+      delete city_path(city_list[0])
+      expect(assigns(:city)).to eq(city_list[0])
+    end
+    
+    # it 'decreases City count by 1' do
+    #   expect do
+    #     delete city_path(city_list[0])
+    #   end.to change(City, :count).by(-1)
+    # end
+
+    it 'shows a success message' do
+      delete city_path(city_list[0])
+      expect(flash[:success]).to eq('City removed successfully')
+    end
+
+    it 'redirects to city_index_path' do
+      delete city_path(city_list[0])
+      expect(response).to redirect_to(city_index_path)
     end
   end
 end
