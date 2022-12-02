@@ -16,11 +16,11 @@ RSpec.describe 'Cities', type: :request do
   end
 
   before(:example, fill_in_new_city_form: true) do
-    @new_city_params = { name: 'New City', prefecture_id: prefecture_list[0].id }
+    @new_city_params = { name: 'New city name', prefecture_id: prefecture_list[0].id }
   end
 
-  before(:example, fill_in_new_city_form_badly: true) do
-    @invalid_new_city_params = { name: 'Invalid New City', prefecture_id: 1 }
+  before(:example, fill_in_form_badly: true) do
+    @invalid_city_params = { name: 'Invalid city name', prefecture_id: 1 }
   end
 
   before(:example, edit_city_form: true) do
@@ -189,9 +189,9 @@ RSpec.describe 'Cities', type: :request do
       end
     end
 
-    context 'when unsuccessful', fill_in_new_city_form_badly: true do
+    context 'when unsuccessful', fill_in_form_badly: true do
       it 'returns status: unprocessable_entity' do
-        post city_new_path, params: { city: @invalid_new_city_params }
+        post city_new_path, params: { city: @invalid_city_params }
         expect(response.media_type).to eq('text/html')
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.status).to eq(422)
@@ -199,23 +199,23 @@ RSpec.describe 'Cities', type: :request do
 
       it 'assigns @prefectures' do
         expected = prefecture_list.sort_by { |prefecture| prefecture.code }
-        post city_new_path, params: { city: @invalid_new_city_params }
+        post city_new_path, params: { city: @invalid_city_params }
         expect(assigns(:prefectures)).to eq(expected)
       end
 
       it 'does not increase City count' do
         expect do
-          post city_new_path, params: { city: @invalid_new_city_params }
+          post city_new_path, params: { city: @invalid_city_params }
         end.to change(City, :count).by(0)
       end
 
       it 'shows an error message' do
-        post city_new_path, params: { city: @invalid_new_city_params }
+        post city_new_path, params: { city: @invalid_city_params }
         expect(flash[:error]).to eq('Error: City could not be saved')
       end
 
       it 'renders new template' do
-        post city_new_path, params: { city: @invalid_new_city_params }
+        post city_new_path, params: { city: @invalid_city_params }
         expect(response).to render_template(:new)
       end
     end
@@ -284,6 +284,31 @@ RSpec.describe 'Cities', type: :request do
       it 'redirects to city_index_path' do
         patch edit_city_path(city_list[0]), params: { city: @edited_city_params }
         expect(response).to redirect_to(city_path(city_list[0]))
+      end
+    end
+
+    context 'when unsuccessful', fill_in_form_badly: true do
+      it 'returns status: unprocessable_entity' do
+        patch edit_city_path(city_list[0]), params: { city: @invalid_city_params }
+        expect(response.media_type).to eq('text/html')
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response.status).to eq(422)
+      end
+
+      it 'assigns @prefectures' do
+        expected = prefecture_list.sort_by { |prefecture| prefecture.code }
+        patch edit_city_path(city_list[0]), params: { city: @invalid_city_params }
+        expect(assigns(:prefectures)).to eq(expected)
+      end
+
+      it 'shows an error message' do
+        patch edit_city_path(city_list[0]), params: { city: @invalid_city_params }
+        expect(flash[:error]).to eq('Error: City could not be updated')
+      end
+
+      it 'renders edit template' do
+        patch edit_city_path(city_list[0]), params: { city: @invalid_city_params }
+        expect(response).to render_template(:edit)
       end
     end
   end
