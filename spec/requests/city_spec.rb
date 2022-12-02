@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Cities', type: :request do
-  let(:city_list) { create_list(:city, 3) }
   let(:prefecture_list) { create_list(:prefecture, 3) }
+  let(:city_list) { create_list(:city, 3, prefecture_id: prefecture_list[0].id) }
   let(:waste_type_list) { create_list(:waste_type, 3, city_identifier: city_list[0].id) }
 
   before(:example, clear_city_list: true) do
@@ -224,11 +224,11 @@ RSpec.describe 'Cities', type: :request do
       expect(response.status).to eq(200)
     end
 
-    # it 'assigns @prefectures' do
-    #   expected = prefecture_list.sort_by { |prefecture| prefecture.code }
-    #   get edit_city_path(city_list[0])
-    #   expect(assigns(:prefectures)).to eq(expected)
-    # end
+    it 'assigns @prefectures' do
+      expected = prefecture_list.sort_by { |prefecture| prefecture.code }
+      get edit_city_path(city_list[0])
+      expect(assigns(:prefectures)).to eq(expected)
+    end
 
     it 'assigns @city' do
       get edit_city_path(city_list[0])

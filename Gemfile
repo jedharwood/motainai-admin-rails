@@ -28,7 +28,8 @@ gem "inline_svg" # Save reference saved SVG files as assets
 group :test do
   gem "shoulda-matchers", "~> 5.0" # Assert model validations
   gem "simplecov", require: false # Test coverage 
-  gem "rails-controller-testing" 
+  gem "rails-controller-testing" # Expose methods for testing controller actions
+  gem "database_cleaner" # Clear test db between test runs
 end
 
 group :development, :test do
