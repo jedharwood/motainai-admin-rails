@@ -23,6 +23,10 @@ RSpec.describe 'Cities', type: :request do
     @invalid_new_city_params = { name: 'Invalid New City', prefecture_id: 1 }
   end
 
+  before(:example, edit_city_form: true) do
+    @edited_city_params = { name: 'Edited city name', prefecture_id: prefecture_list[2].id, rating: 5 }
+  end
+
   describe 'GET /index' do
     it 'succeeds' do
       get city_index_path
@@ -164,7 +168,7 @@ RSpec.describe 'Cities', type: :request do
         post city_new_path, params: { city: @new_city_params }
         expected_city = assigns(:city)
         expect(expected_city.name).to eq(@new_city_params[:name])
-        expect(expected_city.prefecture_id).to eq(prefecture_list[0].id)
+        expect(expected_city.prefecture_id).to eq(@new_city_params[:prefecture_id])
         expect(expected_city.rating).to eq(0)
       end
 
@@ -238,6 +242,49 @@ RSpec.describe 'Cities', type: :request do
     it 'renders edit template' do
       get edit_city_path(city_list[0])
       expect(response).to render_template(:edit)
+    end
+  end
+
+  describe 'PATCH /update' do
+    context 'when successful', edit_city_form: true do
+      it 'returns status: found' do
+        patch edit_city_path(city_list[0]), params: { city: @edited_city_params }
+        expect(response.media_type).to eq('text/html')
+        expect(response).to have_http_status(:found)
+        expect(response.status).to eq(302)
+      end
+
+      it 'assigns @prefectures' do
+        expected = prefecture_list.sort_by { |prefecture| prefecture.code }
+        patch edit_city_path(city_list[0]), params: { city: @edited_city_params }
+        expect(assigns(:prefectures)).to eq(expected)
+      end
+
+      it 'assigns @city with edited parameters' do
+        patch edit_city_path(city_list[0]), params: { city: @edited_city_params }
+        expected_city = assigns(:city)
+        expect(expected_city.name).to eq(@edited_city_params[:name])
+        expect(expected_city.prefecture_id).to eq(@edited_city_params[:prefecture_id])
+        expect(expected_city.rating).to eq(@edited_city_params[:rating])
+      end
+
+      it 'updates the city in the db' do
+        patch edit_city_path(city_list[0]), params: { city: @edited_city_params }
+        updated_city = City.find(city_list[0].id)
+        expect(updated_city.name).to eq(@edited_city_params[:name])
+        expect(updated_city.prefecture_id).to eq(@edited_city_params[:prefecture_id])
+        expect(updated_city.rating).to eq(@edited_city_params[:rating])
+      end
+
+      it 'shows a success message' do
+        patch edit_city_path(city_list[0]), params: { city: @edited_city_params }
+        expect(flash[:success]).to eq('City updated successfully')
+      end
+
+      it 'redirects to city_index_path' do
+        patch edit_city_path(city_list[0]), params: { city: @edited_city_params }
+        expect(response).to redirect_to(city_path(city_list[0]))
+      end
     end
   end
 end
