@@ -105,3 +105,12 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+def instantiate_prefecture_list(number_of_prefectures)
+  @prefectures = []
+  (0...number_of_prefectures).each { |i|
+    idx = i + 1
+    @prefectures << Prefecture.create(name: "Test prefecture #{idx}", code: 900 + idx)
+  }
+  @prefectures.sort_by { |prefecture| prefecture.code }
+end
