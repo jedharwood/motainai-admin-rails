@@ -114,3 +114,12 @@ def instantiate_prefecture_list(number_of_prefectures)
   }
   @prefectures.sort_by { |prefecture| prefecture.code }
 end
+
+def instantiate_city_list(number_of_cities, prefecture)
+  @cities = []
+  (0...number_of_cities).each { |i|
+    idx = i + 1
+    @cities << City.create(name: "Test city #{idx}", rating: 0, prefecture: prefecture)
+  }
+  @cities.sort_by { |city| city.name }
+end

@@ -333,15 +333,6 @@ RSpec.describe 'Cities', type: :request do
   end
 end
 
-def instantiate_city_list(number_of_cities, prefecture)
-  @cities = []
-  (0...number_of_cities).each { |i|
-    idx = i + 1
-    @cities << City.create(name: "Test city #{idx}", rating: 0, prefecture: prefecture)
-  }
-  @cities.sort_by { |city| city.name }
-end
-
 def instantiate_waste_types(number_of_waste_types, city)
   @waste_types = []
   (0...number_of_waste_types).each { |i|
