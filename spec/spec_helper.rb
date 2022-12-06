@@ -108,18 +108,18 @@ end
 
 def instantiate_prefecture_list(number_of_prefectures)
   @prefectures = []
-  (0...number_of_prefectures).each { |i|
+  (0...number_of_prefectures).each do |i|
     idx = i + 1
     @prefectures << Prefecture.create(name: "Test prefecture #{idx}", code: 900 + idx)
-  }
+  end
   @prefectures.sort_by { |prefecture| prefecture.code }
 end
 
 def instantiate_city_list(number_of_cities, prefecture)
   @cities = []
-  (0...number_of_cities).each { |i|
+  (0...number_of_cities).each do |i|
     idx = i + 1
     @cities << City.create(name: "Test city #{idx}", rating: 0, prefecture: prefecture)
-  }
+  end
   @cities.sort_by { |city| city.name }
 end
