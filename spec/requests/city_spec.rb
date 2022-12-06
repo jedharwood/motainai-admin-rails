@@ -49,18 +49,18 @@ RSpec.describe 'Cities', type: :request do
         expect(response).to be_successful
         expect(response.status).to eq(200)
       end
-  
+
       it 'assigns @cities' do
         get city_index_path
         expect(assigns(:cities)).to eq(@cities)
       end
-  
+
       it 'renders index template' do
         get city_index_path
         expect(response).to render_template(:index)
       end
     end
-    
+
     context 'when db contains no cities' do
       it 'assigns @cities as an empty array' do
         get city_index_path
@@ -76,17 +76,17 @@ RSpec.describe 'Cities', type: :request do
         expect(response).to be_successful
         expect(response.status).to eq(200)
       end
-  
+
       it 'assigns @city' do
         get city_path(@cities[0])
         expect(assigns(:city)).to eq(@cities[0])
       end
 
-      it 'assigns @waste_types' do  
+      it 'assigns @waste_types' do
         get city_path(@cities[0])
         expect(assigns(:waste_types)).to eq(@waste_types)
       end
-  
+
       it 'renders show template' do
         get city_path(@cities[0])
         expect(response).to render_template(:show)
@@ -94,11 +94,11 @@ RSpec.describe 'Cities', type: :request do
     end
 
     context 'when city has no waste types', populate_waste_types_for_other_city: true do
-      it 'does not assign @waste_types' do  
+      it 'does not assign @waste_types' do
         get city_path(@cities[0])
         expect(assigns(:waste_types)).to eq([])
       end
-    end    
+    end
   end
 
   describe 'GET /new' do
@@ -209,17 +209,17 @@ RSpec.describe 'Cities', type: :request do
         expect(response).to be_successful
         expect(response.status).to eq(200)
       end
-  
+
       it 'assigns @prefectures' do
         get edit_city_path(@cities[0])
         expect(assigns(:prefectures)).to eq(@prefectures)
       end
-  
+
       it 'assigns @city' do
         get edit_city_path(@cities[0])
         expect(assigns(:city)).to eq(@cities[0])
       end
-  
+
       it 'renders edit template' do
         get edit_city_path(@cities[0])
         expect(response).to render_template(:edit)
@@ -313,18 +313,18 @@ RSpec.describe 'Cities', type: :request do
         delete city_path(@cities[0])
         expect(assigns(:city)).to eq(@cities[0])
       end
-      
+
       it 'decreases City count by 1' do
         expect do
           delete city_path(@cities[0])
         end.to change(City, :count).by(-1)
       end
-  
+
       it 'shows a success message' do
         delete city_path(@cities[0])
         expect(flash[:success]).to eq('City removed successfully')
       end
-  
+
       it 'redirects to city_index_path' do
         delete city_path(@cities[0])
         expect(response).to redirect_to(city_index_path)
@@ -333,22 +333,12 @@ RSpec.describe 'Cities', type: :request do
   end
 end
 
-def instantiate_city_list(number_of_cities, prefecture)
-  @cities = []
-  (0...number_of_cities).each { |i|
-    idx = i + 1
-    @cities << City.create(name: "Test city #{idx}", rating: 0, prefecture: prefecture)
-  }
-  @cities.sort_by { |city| city.name }
-end
-
 def instantiate_waste_types(number_of_waste_types, city)
   @waste_types = []
-  (0...number_of_waste_types).each { |i|
+  (0...number_of_waste_types).each do |i|
     idx = i + 1
-    @waste_types << WasteType.create!(name: "Waste type #{idx}", city_identifier: city.id, rule_day: RuleDay.create!(name: "Rule day #{idx}", code: idx, city: city))
-  }
+    @waste_types << WasteType.create!(name: "Waste type #{idx}", city_identifier: city.id,
+                                      rule_day: RuleDay.create!(name: "Rule day #{idx}", code: idx, city:))
+  end
   @waste_types.sort_by { |waste_type| waste_type.rule_day.code }
 end
-
-    
